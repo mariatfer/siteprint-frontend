@@ -7,9 +7,9 @@ export default withNuxt({
     'vue/html-self-closing': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/ban-ts-comment': 'off',
-    'prettier/prettier': ['error']
+    'prettier/prettier': ['error'],
   },
   plugins: {
-    prettier: prettierPlugin
-  }
+    prettier: prettierPlugin,
+  },
 })
