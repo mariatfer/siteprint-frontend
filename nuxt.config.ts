@@ -16,6 +16,16 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
   ssr: false,
+  css: ['@/assets/fonts.css', '@/assets/variables.css', '@/assets/reset.scss'],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "assets/mixin.scss" as *;',
+        },
+      },
+    },
+  },
   i18n: {
     ...i18nConfig,
     detectBrowserLanguage: {
