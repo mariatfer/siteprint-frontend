@@ -1,0 +1,39 @@
+:root {
+  --c-black: #000000;
+  --c-semi-black: #0d0d0d;
+  --c-ligth-blue: #DBEEFF;
+  --c-dark-blue: #04435F;
+  --c-primary: #035074;
+  --c-secundary: #A1DB0E;
+  --c-light-green: #cdecb9;
+  --c-dark-green: #4A6B2A;
+  --c-light-yellow: #FF9900;
+  --c-dark-yellow: #C86B1E;
+  --c-red: #E10E22;
+  --c-dark-red: #A70505;
+  --c-white: #ffffff;
+  --c-graphite: #1a1a1a;
+  --c-light-graphite: #f0f0f0;
+
+  --f-font-raleway: 'Raleway';
+  --f-font-lato: 'Lato';
+  --f-font-poppins: 'Poppins';
+
+  --t-transition: 0.3s;
+  --s-border-radius: 0.4375rem;
+  --s-font-h1: 3rem;
+  --s-font-h1-mobile: 2rem;
+  --s-font-h2: 3rem;
+  --s-font-h2-mobile: 2rem;
+  --s-font-h3: 2rem;
+  --s-font-h3-mobile: 1.5rem;
+  --s-font-h4: 1.5rem;
+  --s-font-h4-mobile: 1.3125rem;
+  --s-font-p: 1.125rem;
+  --s-font-small: 0.875rem;
+  --s-font-cta: 1rem;
+  --s-margin: 7rem;
+  --s-margin-mobile: 3.5rem;
+  --s-padding: 7rem;
+  --s-padding-mobile: 2rem;
+}
