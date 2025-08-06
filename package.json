@@ -11,6 +11,9 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@fontsource/lato": "^5.2.6",
+    "@fontsource/poppins": "^5.2.6",
+    "@fontsource/raleway": "^5.2.6",
     "@nuxt/content": "^3.6.3",
     "@nuxt/eslint": "^1.7.1",
     "@nuxt/image": "^1.11.0",
@@ -37,6 +40,7 @@
     "husky": "^9.1.7",
     "postcss-html": "^1.8.0",
     "prettier": "^3.6.2",
+    "sass-embedded": "^1.90.0",
     "stylelint": "^16.23.0",
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^39.0.0",
