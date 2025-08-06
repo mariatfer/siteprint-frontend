@@ -42,8 +42,7 @@ console.log('Product:', product)
 <template>
   <div>
     {{ products }}
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <NuxtPage />
     {{ home }}
   </div>
 </template>
