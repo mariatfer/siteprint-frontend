@@ -56,3 +56,9 @@ export interface SmallCard {
   cardImage: Media
   title: string
 }
+
+export interface Hero {
+  heroImage: Media
+  title: string
+  description: string
+}

@@ -1,6 +1,6 @@
 import type { Category } from '@/interfaces/navbar'
-import type { Image } from '@/interfaces/common'
-import type { Hero } from '@/interfaces/home'
+import type { Image, Hero } from '@/interfaces/common'
+import type { SEO } from '@/interfaces/seo'
 export interface Product {
   id: number
   category: Category
@@ -17,4 +17,5 @@ export interface ProductsLocales {
 
 export interface ProductsPage {
   hero: Hero
+  seo: SEO
 }
