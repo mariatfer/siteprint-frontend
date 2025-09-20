@@ -11,14 +11,14 @@ const { find, findOne } = useStrapi()
 
 // Find single type (single type)
 
-const { data: home } = await find('home-page', {
-  populate: {
-    image: {
-      fields: ['id', 'url', 'alternativeText'],
-    },
-  },
-})
-console.log('Home Page Data:', home)
+// const { data: home } = await find('home-page', {
+//   populate: {
+//     image: {
+//       fields: ['id', 'url', 'alternativeText'],
+//     },
+//   },
+// })
+// console.log('Home Page Data:', home)
 
 // Find all products (collection)
 
@@ -27,7 +27,7 @@ console.log('Products Data:', products)
 
 // Find just one product by slug (collection)
 
-const productSlug = 'product-1'
+const productSlug = '/tarjetas-de-visita'
 
 const { data: product } = await findOne<Product>('products', undefined, {
   filters: {
@@ -40,9 +40,7 @@ console.log('Product:', product)
 </script>
 
 <template>
-  <div>
-    {{ products }}
-    <NuxtPage />
-    {{ home }}
-  </div>
+  <NuxtLayout>
+    <NuxtPage :key="$route.fullPath" />
+  </NuxtLayout>
 </template>
