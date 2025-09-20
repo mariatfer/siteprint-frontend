@@ -4,7 +4,7 @@
   --c-ligth-blue: #DBEEFF;
   --c-dark-blue: #04435F;
   --c-primary: #035074;
-  --c-secundary: #A1DB0E;
+  --c-secondary: #A1DB0E;
   --c-light-green: #cdecb9;
   --c-dark-green: #4A6B2A;
   --c-light-yellow: #FF9900;
@@ -13,7 +13,10 @@
   --c-dark-red: #A70505;
   --c-white: #ffffff;
   --c-graphite: #1a1a1a;
+  --c-mid-graphite: #c5c4c4;
   --c-light-graphite: #f0f0f0;
+  --c-dark-brown: #333333;
+  --c-brown: #424720;
 
   --f-font-raleway: 'Raleway';
   --f-font-lato: 'Lato';
@@ -35,5 +38,5 @@
   --s-margin: 7rem;
   --s-margin-mobile: 3.5rem;
   --s-padding: 7rem;
-  --s-padding-mobile: 2rem;
+  --s-padding-mobile: 1.7rem;
 }

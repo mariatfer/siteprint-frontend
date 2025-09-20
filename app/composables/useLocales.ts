@@ -1,4 +1,3 @@
-import { ref } from 'vue'
 import type { PAGES } from '@/constants/pages'
 import type { COMMON_COMPONENTS } from '@/constants/commonComponents'
 
@@ -17,21 +16,11 @@ const LANGUAGE = 'es'
  * @param translations - The name of the JSON file to load (without extension).
  * @returns An object containing the typed data.
  */
-export function useLocales<T>(translations: TranslationsType) {
-  const data = ref<T | null>(null)
-
-  const loadLocale = async () => {
-    try {
-      const localeModule = await import(
-        `@/../${LOCALES_BASE_PATH}/${LANGUAGE}/${translations}.json`
-      )
-      data.value = localeModule.default as T
-    } catch {
-      data.value = null
-    }
-  }
-
-  loadLocale()
+export async function useLocales<T>(translations: TranslationsType) {
+  const localeModule: { default: T } = await import(
+    `@/../${LOCALES_BASE_PATH}/${LANGUAGE}/${translations}.json`
+  )
+  const data = localeModule.default
 
   return { data }
 }

@@ -16,7 +16,12 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
   ssr: false,
-  css: ['@/assets/fonts.css', '@/assets/variables.css', '@/assets/reset.scss'],
+  css: [
+    '@/assets/fonts.css',
+    '@/assets/variables.css',
+    '@/assets/reset.scss',
+    '@/assets/vueTransitions.css',
+  ],
   vite: {
     css: {
       preprocessorOptions: {

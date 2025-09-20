@@ -1,1 +1,1 @@
-export const PAGES = ['home', 'about-me', 'projects', 'contact', 'thank-you'] as const
+export const PAGES = ['home', 'productos', 'producto'] as const
