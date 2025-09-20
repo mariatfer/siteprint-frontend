@@ -17,10 +17,8 @@ html {
 body {
   max-width: 120rem;
   margin: auto;
-  background-color: var(--c-ligth-aquamarine);
   font-family: var(--f-font-raleway);
   color: var(--c-black);
-  min-height: 100vh;
   font-size: 100%;
 }
 
@@ -138,6 +136,7 @@ label {
   color: inherit;
   display: block;
   appearance: none;
+  outline: none;
 }
 
 svg {
