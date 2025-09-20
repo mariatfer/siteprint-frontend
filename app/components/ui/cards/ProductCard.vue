@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Product } from '@/interfaces/products'
 import { useCardHover } from '@/composables/useCardHover'
-defineProps<{ product: Product }>()
+import type { ProductLite } from '@/interfaces/navbar'
+defineProps<{ product: Product | ProductLite }>()
 const productsSlug = '/productos'
 const CARDS_CLASS_NAME = '.product-card'
 useCardHover(CARDS_CLASS_NAME)
@@ -37,12 +38,13 @@ useCardHover(CARDS_CLASS_NAME)
   height: 12.5rem;
   background-color: var(--c-white);
   border-radius: 0.75em;
-  @include box-shadow($blur: 0.625rem, $color: #00000029);
+  @include box-shadow($blur: 0.625rem, $color: #0000005b);
   @include flex(column, space-between, space-between);
   cursor: pointer;
   padding: 0.125rem;
   overflow: hidden;
   transition: var(--t-transition);
+  border: 0.0313rem solid var(--mid-graphite);
 
   &__content {
     @include flex(column, $justify: space-between);

@@ -14,7 +14,7 @@ defineProps<SmallCard>()
       :placeholder="cardImage.placeholder"
       class="card__image"
     />
-    <h4 class="card__title">{{ title }}</h4>
+    <h3 class="card__title">{{ title }}</h3>
   </article>
 </template>
 

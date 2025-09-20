@@ -53,9 +53,15 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
           :alt="product.productImage.alternativeText"
           :title="product.productImage.alternativeText"
           :placeholder="product.productImage.placeholder"
+          fetchpriority="high"
+          preload
+          :sizes="'100vw'"
+          :width="1200"
+          :height="800"
+          quality="85"
           class="carousel__image"
         />
-        <h4 class="carousel__product">{{ product.name }}</h4>
+        <h3 class="carousel__product">{{ product.name }}</h3>
       </NuxtLinkLocale>
     </SwiperSlide>
     <div class="swiper-button-next" aria-label="Next slide"></div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Hero } from '@/interfaces/home'
+import type { Hero } from '@/interfaces/common'
 
 defineProps<{
   hero: Hero
@@ -18,12 +18,17 @@ defineProps<{
       :alt="hero.heroImage.alternativeText"
       :title="hero.heroImage.alternativeText"
       fetchpriority="high"
-      sizes="100vw"
-      quality="90"
       preload
+      :sizes="'100vw'"
+      :width="1200"
+      :height="800"
+      quality="85"
       class="hero__image"
     />
-    <h2 class="hero__title">{{ hero.title }}</h2>
+    <div class="hero__content">
+      <h2 v-if="hero.title" class="hero__title">{{ hero.title }}</h2>
+      <p v-if="hero.description" class="hero__description">{{ hero.description }}</p>
+    </div>
   </section>
 </template>
 
@@ -31,16 +36,11 @@ defineProps<{
 .hero {
   aspect-ratio: 21 / 9;
   position: relative;
-  margin: 0 0 var(--s-margin) 0;
   max-height: 31.25rem;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-
-  @include responsive() {
-    margin: 0 0 var(--s-margin-mobile) 0;
-  }
 
   &--with-padding {
     padding: 0 var(--s-padding);
@@ -55,7 +55,7 @@ defineProps<{
     grid-row: 1;
   }
 
-  &__title {
+  &__content {
     grid-column: 1;
     grid-row: 1;
     align-self: end;
@@ -63,23 +63,48 @@ defineProps<{
     width: fit-content;
     max-width: 100%;
     height: fit-content;
+    padding: 2.5rem;
+
+    @include responsive() {
+      padding: 2rem;
+    }
+    @include responsive(75rem) {
+      width: 60%;
+    }
+  }
+
+  &__title {
     font-weight: bolder;
     font-size: 3.7rem;
     text-align: left;
     text-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.7);
     color: var(--c-white);
-    padding: 2.5rem;
-    margin: 0;
+    margin: 0 0 0.5rem 0;
 
-    @include responsive() {
-      padding: 2.5rem;
-    }
     @include responsive(75rem) {
       font-size: var(--s-font-h2-mobile);
-      width: 60%;
+    }
+    @include responsive() {
+      margin: 0;
     }
     @include responsive(54rem) {
       font-size: var(--s-font-h3-mobile);
+    }
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8);
+    color: var(--c-white);
+    margin: 0;
+    max-width: 600px;
+
+    @include responsive(75rem) {
+      font-size: 1rem;
+    }
+    @include responsive() {
+      display: none;
     }
   }
 }
