@@ -1,0 +1,97 @@
+{
+  "copyright": "© 2025 AFR Diseño & Impresiones. Todos los derechos reservados.",
+  "categories": [
+    {
+      "id": 1,
+      "name": "¿Cómo podemos ayudarte?",
+      "links": [
+        {
+          "id": 1,
+          "name": "¿Cómo solicitar un presupuesto?",
+          "link": "/como-solicitar-un-presupuesto",
+          "title": "Ir a la página de cómo solicitar un presupuesto"
+        },
+        {
+          "id": 2,
+          "name": "Preguntas frecuentes",
+          "link": "/preguntas-frecuentes",
+          "title": "Ir a la página de preguntas frecuentes"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Empresa",
+      "links": [
+        {
+          "id": 1,
+          "name": "Sobre nosotros",
+          "link": "/sobre-nosotros",
+          "title": "Ir a la página de sobre nosotros"
+        },
+        {
+          "id": 2,
+          "name": "Contacto",
+          "link": "/contacto",
+          "title": "Ir a la página de contacto"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Redes sociales",
+      "links": [
+        {
+          "id": 1,
+          "name": "Instagram",
+          "icon": {
+            "name": "instagram",
+            "alt": "Icono de Instagram"
+          },
+          "link": "/",
+          "title": "Ir al instagram de AFR Diseño & Impresión"
+        },
+        {
+          "id": 2,
+          "name": "Tiktok",
+          "icon": {
+            "name": "tiktok",
+            "alt": "Icono de Tiktok"
+          },
+          "link": "/",
+          "title": "Ir al tiktok de AFR Diseño & Impresión"
+        }
+      ]
+    }
+  ],
+  "policies": {
+    "id": 1,
+    "name": "Area legal",
+    "links": [
+      {
+        "id": 1,
+        "name": "Política de privacidad",
+        "link": "/politica-de-privacidad",
+        "title": "Ir a la página de política de privacidad"
+      },
+      {
+        "id": 2,
+        "name": "Condiciones de uso",
+        "link": "/condiciones-de-uso",
+        "title": "Ir a la página de condiciones de uso"
+      },
+      {
+        "id": 3,
+        "name": "Política de cookies",
+        "link": "/policita-de-cookies",
+        "title": "Ir a la página de política de cookies"
+      },
+      {
+        "id": 4,
+        "name": "Aviso legal",
+        "link": "/aviso-legal",
+        "title": "Ir a la página de aviso legal"
+      }
+    ]
+  }
+}
