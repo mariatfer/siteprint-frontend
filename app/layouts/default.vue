@@ -4,6 +4,9 @@ useHead({
     { rel: 'preconnect', href: 'https://www.google.com' },
     { rel: 'preconnect', href: 'https://maps.googleapis.com' },
   ],
+  htmlAttrs: {
+    lang: 'es',
+  },
 })
 </script>
 
