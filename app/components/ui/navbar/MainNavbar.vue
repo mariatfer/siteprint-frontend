@@ -171,15 +171,11 @@ function toggleMenu() {
     font-size: var(--s-font-small);
     font-weight: bold;
     transition: var(--t-transition);
+    padding: 0.3rem;
     &:hover {
       color: var(--c-secondary);
-    }
-    @include responsive() {
-      padding: 0.3rem;
-      &:hover {
-        border-radius: 50%;
-        background-color: var(--c-dark-blue);
-      }
+      border-radius: 50%;
+      background-color: var(--c-dark-blue);
     }
   }
 

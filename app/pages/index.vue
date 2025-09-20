@@ -59,13 +59,14 @@ useSeoMeta({
 </script>
 
 <template>
+  <UiSEOTitle :meta-title="homeData.seo.metaTitle" />
   <section class="carousel">
     <UiBaseCarousel v-if="homeData.homeCarousel" :carousel="homeData.homeCarousel" />
     <UiTheLine />
   </section>
   <section v-if="products && products.length" class="products">
     <UiTheTitle>{{ homeLocales.ourServices }}</UiTheTitle>
-    <UiProductCarousel :products="products" />
+    <ViewsHomeProductCarousel :products="products" />
   </section>
   <UiTheHero v-if="homeData.hero" :hero="homeData.hero" :padding="true" />
   <section class="cards-section">
@@ -75,7 +76,7 @@ useSeoMeta({
     </div>
     <UiTheLine />
   </section>
-  <UiTheMap />
+  <ViewsHomeTheMap />
 </template>
 <style scoped lang="scss">
 .carousel,
@@ -95,8 +96,10 @@ useSeoMeta({
 
 .cards-section {
   padding: 0 var(--s-padding);
+  margin: var(--s-margin) 0;
   @include responsive() {
     padding: 0 var(--s-padding-mobile);
+    margin: var(--s-margin-mobile) 0;
   }
   &--align {
     @include flex($align: stretch, $gap: 7rem);
