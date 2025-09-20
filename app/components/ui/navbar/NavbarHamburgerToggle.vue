@@ -1,0 +1,80 @@
+<script lang="ts" setup>
+defineProps<{ active: boolean }>()
+const emit = defineEmits(['toggle'])
+</script>
+
+<template>
+  <div class="background">
+    <div
+      class="button-mobile"
+      :class="{ 'button-toggle--active': active }"
+      @click="emit('toggle')"
+    >
+      <div class="button-mobile--line" />
+      <div class="button-mobile--line" />
+      <div class="button-mobile--line" />
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.button-mobile {
+  display: none;
+  @include responsive() {
+    background: none;
+    border: none;
+    cursor: pointer;
+    @include flex(column);
+    height: 1.5rem;
+    width: 1.5rem;
+    position: relative;
+    margin: 0 0 0.3rem 0;
+    transition: var(--t-transition);
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    .button-mobile--line {
+      background-color: var(--c-secondary);
+    }
+  }
+
+  &--line {
+    height: 1rem;
+    width: 1.5rem;
+    margin: 0.35rem 0 0 0;
+    background-color: var(--c-secondary);
+    border-radius: 0.125rem;
+    transform-origin: center;
+    transition: all 0.4s ease;
+  }
+}
+.background {
+  padding: 0.3rem 0.5rem;
+  transition: var(--t-transition);
+  &:hover {
+    border-radius: 50%;
+    background-color: var(--c-dark-blue);
+  }
+}
+
+.button-toggle--active {
+  top: 0.1875rem;
+  left: 0.375rem;
+  .button-mobile--line:nth-child(1) {
+    transform: rotate(45deg) translate(0, 0.93rem);
+    margin: 0 0 0 0.6rem;
+    height: 0.2rem;
+  }
+
+  .button-mobile--line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .button-mobile--line:nth-child(3) {
+    transform: rotate(-45deg) translate(0, -0.93rem);
+    margin: 0 0 0 0.6rem;
+    height: 0.2rem;
+  }
+}
+</style>
