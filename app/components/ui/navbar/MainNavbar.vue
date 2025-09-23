@@ -104,8 +104,10 @@ function toggleMenu() {
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 120rem;
   z-index: 1000;
 
   &__principal {
