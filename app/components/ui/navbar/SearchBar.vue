@@ -47,7 +47,7 @@ defineProps<Search>()
     transition: var(--t-transition);
     @include box-shadow($blur: 0.625rem, $color: #00000062);
     &:focus {
-      box-shadow: 0 0 5px var(--c-secondary);
+      box-shadow: 0 0 0.3125rem var(--c-secondary);
     }
   }
 }
