@@ -139,6 +139,11 @@ label {
   outline: none;
 }
 
+textarea {
+  resize: none;
+  field-sizing: content;
+}
+
 svg {
   width: 100%;
   display: block;
