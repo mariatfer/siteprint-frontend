@@ -15,6 +15,15 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/i18n',
   ],
+  runtimeConfig: {
+    resendApiKey: process.env.RESEND_API_KEY,
+
+    public: {
+      strapi: {
+        url: process.env.STRAPI_URL || 'http://localhost:1337',
+      },
+    },
+  },
   ssr: false,
   css: [
     '@/assets/fonts.css',
