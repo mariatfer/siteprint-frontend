@@ -24,6 +24,7 @@ defineProps<{
       :height="800"
       quality="85"
       class="hero__image"
+      :class="{ 'hero__image--border': padding }"
     />
     <div class="hero__content">
       <h2 v-if="hero.title" class="hero__title">{{ hero.title }}</h2>
@@ -46,13 +47,17 @@ defineProps<{
     padding: 0 var(--s-padding);
 
     @include responsive() {
-      padding: 0;
+      padding: 0 var(--s-padding-mobile);
     }
   }
 
   &__image {
     grid-column: 1;
     grid-row: 1;
+
+    &--border {
+      border-radius: var(--s-border-radius);
+    }
   }
 
   &__content {
@@ -98,7 +103,7 @@ defineProps<{
     text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8);
     color: var(--c-white);
     margin: 0;
-    max-width: 600px;
+    max-width: 37.5rem;
 
     @include responsive(75rem) {
       font-size: 1rem;

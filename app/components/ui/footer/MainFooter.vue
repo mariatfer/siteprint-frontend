@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { Footer } from '@/interfaces/footer'
+import type { Policy } from '@/interfaces/policies'
+import { getPolicies } from '@/services/policies'
 const { data: footerLocales } = await useLocales<Footer>('footer')
 const { isResponsiveResolution } = useWindowsResize()
+
+const policies = ref<Policy[]>([])
+policies.value = await getPolicies()
 </script>
 
 <template>
@@ -12,7 +17,7 @@ const { isResponsiveResolution } = useWindowsResize()
         :key="category.id"
         class="footer--width"
       >
-        <h4 class="footer__category-name">{{ category.name }}</h4>
+        <h3 class="footer__category-name">{{ category.name }}</h3>
         <ul class="footer--width">
           <li v-for="link in category.links" :key="link.id" class="footer__item">
             <NuxtLinkLocale :to="link.link" :title="link.title" class="footer__link">
@@ -28,37 +33,34 @@ const { isResponsiveResolution } = useWindowsResize()
         </ul>
       </li>
       <li v-if="isResponsiveResolution" class="footer--width">
-        <h4 class="footer__category-name">{{ footerLocales.policies.name }}</h4>
+        <h3 class="footer__category-name">{{ footerLocales.policies.name }}</h3>
         <ul class="footer--width">
-          <li
-            v-for="link in footerLocales.policies.links"
-            :key="link.id"
-            class="footer__item"
-          >
-            <NuxtLinkLocale :to="link.link" :title="link.title" class="footer__link">
-              <icon
-                v-if="link.icon"
-                :name="resolveIcons(link.icon.name)"
-                :alt="link.icon.alt"
-                class="footer__icon"
-              />
-              {{ link.name }}
+          <li v-for="policy in policies" :key="policy.id" class="footer__item">
+            <NuxtLinkLocale
+              :to="`/${policy.slug}`"
+              :title="policy.title"
+              class="footer__link"
+            >
+              {{ policy.name }}
             </NuxtLinkLocale>
           </li>
         </ul>
       </li>
     </ul>
     <ul v-if="!isResponsiveResolution" class="footer__policies">
-      <template v-for="(policy, index) in footerLocales.policies.links" :key="policy.id">
+      <template v-for="(policy, index) in policies" :key="policy.id">
         <li class="footer__policy">
-          <NuxtLinkLocale :to="policy.link" :title="policy.title" class="footer__link">{{
-            policy.name
-          }}</NuxtLinkLocale>
+          <NuxtLinkLocale
+            :to="`/${policy.slug}`"
+            :title="policy.title"
+            class="footer__link"
+            >{{ policy.name }}</NuxtLinkLocale
+          >
         </li>
         <li v-if="index < footerLocales.policies.links.length - 1" class="point"></li>
       </template>
     </ul>
-    <h4 class="footer__copyright">{{ footerLocales.copyright }}</h4>
+    <h3 class="footer__copyright">{{ footerLocales.copyright }}</h3>
   </footer>
 </template>
 

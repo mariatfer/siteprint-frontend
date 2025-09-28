@@ -29,7 +29,7 @@ const emit = defineEmits<{
 }>()
 
 const asideNavbarRef = ref<HTMLElement | null>(null)
-console.log(props.showMenu)
+
 useClickOutside(
   asideNavbarRef,
   () => {
@@ -41,8 +41,6 @@ useClickOutside(
     delay: 10,
   },
 )
-
-console.log(props.showMenu)
 
 const closeDropdown = () => {
   emit('update:showMenu', false)

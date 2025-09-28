@@ -46,6 +46,7 @@ const MAX_CARDS = 2
         v-for="product in products.slice(0, MAX_CARDS)"
         :key="product.id"
         :product="product"
+        @click="closeDropdown"
       />
     </section>
   </nav>

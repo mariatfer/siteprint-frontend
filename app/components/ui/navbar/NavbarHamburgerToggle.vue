@@ -19,19 +19,16 @@ const emit = defineEmits(['toggle'])
 
 <style lang="scss" scoped>
 .button-mobile {
-  display: none;
-  @include responsive() {
-    background: none;
-    border: none;
-    cursor: pointer;
-    @include flex(column);
-    height: 1.5rem;
-    width: 1.5rem;
-    position: relative;
-    margin: 0 0 0.3rem 0;
-    transition: var(--t-transition);
-    flex-shrink: 0;
-  }
+  background: none;
+  border: none;
+  cursor: pointer;
+  @include flex(column);
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+  margin: 0 0 0.3rem 0;
+  transition: var(--t-transition);
+  flex-shrink: 0;
 
   &--line {
     height: 1rem;
@@ -44,13 +41,17 @@ const emit = defineEmits(['toggle'])
   }
 }
 .background {
-  padding: 0.3rem 0.5rem;
-  border-radius: 50%;
-  transition: var(--t-transition);
-  &:hover {
-    background-color: var(--c-dark-blue);
-    .button-mobile--line {
-      background-color: var(--c-secondary);
+  display: none;
+  @include responsive() {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    border-radius: 50%;
+    transition: var(--t-transition);
+    &:hover {
+      background-color: var(--c-dark-blue);
+      .button-mobile--line {
+        background-color: var(--c-secondary);
+      }
     }
   }
 }

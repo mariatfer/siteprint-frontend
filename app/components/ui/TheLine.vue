@@ -5,11 +5,11 @@
 <style lang="scss" scoped>
 .line {
   width: 100%;
-  margin: 3.5rem auto var(--s-margin) auto;
+  margin: 3.5rem auto 0 auto;
   height: 0.125rem;
   background-color: var(--c-primary);
   @include responsive() {
-    margin: 3.5rem auto var(--s-margin-mobile) auto;
+    margin: 3.5rem auto 0 auto;
   }
 }
 </style>
