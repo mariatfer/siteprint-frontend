@@ -1,46 +1,22 @@
 <script setup lang="ts">
-interface Product {
-  id: number
-  title: string
-  slug: string
-  createdAt: string
-  updatedAt: string
-  publishedAt: string
-}
-const { find, findOne } = useStrapi()
+import { Toaster } from 'vue-sonner'
+type ToasterProps = InstanceType<typeof Toaster>['$props']
+type Position = ToasterProps['position']
 
-// Find single type (single type)
-
-// const { data: home } = await find('home-page', {
-//   populate: {
-//     image: {
-//       fields: ['id', 'url', 'alternativeText'],
-//     },
-//   },
-// })
-// console.log('Home Page Data:', home)
-
-// Find all products (collection)
-
-const { data: products } = await find('products')
-console.log('Products Data:', products)
-
-// Find just one product by slug (collection)
-
-const productSlug = '/tarjetas-de-visita'
-
-const { data: product } = await findOne<Product>('products', undefined, {
-  filters: {
-    slug: {
-      $eq: productSlug,
-    },
-  },
-})
-console.log('Product:', product)
+const expand = ref(true)
+const position = ref<Position>('top-right')
+const richColors = ref(true)
+const closeButton = ref(true)
 </script>
 
 <template>
   <NuxtLayout>
+    <Toaster
+      :position="position"
+      :close-button="closeButton"
+      :rich-colors="richColors"
+      :expand="expand"
+    />
     <NuxtPage :key="$route.fullPath" />
   </NuxtLayout>
 </template>

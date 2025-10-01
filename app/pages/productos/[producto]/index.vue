@@ -11,7 +11,13 @@ const productSlug: Slug = { slug: producto as string }
 const product = ref<Product>()
 product.value = await getProductBySlug(productSlug)
 const { data: productLocales } = await useLocales<ProductLocales>('product')
-
+const { parseMarkdown } = useSanitizedMarkdown()
+const htmlDescription = ref('')
+onMounted(async () => {
+  if (product.value) {
+    htmlDescription.value = await parseMarkdown(product.value.description)
+  }
+})
 if (product.value) {
   useSeoMeta({
     title: product.value.seo.metaTitle,
@@ -37,7 +43,7 @@ if (product.value) {
         :border-radius="true"
       />
       <h2 v-if="product?.name" class="product__title">{{ product.name }}</h2>
-      <p v-if="product?.description">{{ product.description }}</p>
+      <p v-if="htmlDescription" v-html="htmlDescription" />
       <section v-if="product?.accordion" class="product__accordion-section">
         <ViewsProductsTheAccordion
           v-for="item in product.accordion"
@@ -50,6 +56,7 @@ if (product.value) {
       <ViewsProductsQuoteForm
         v-if="productLocales.quoteForm"
         :locales="productLocales.quoteForm"
+        form-type="quote"
       />
     </article>
   </div>
