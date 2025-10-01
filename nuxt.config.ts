@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxtjs/strapi',
     '@pinia/nuxt',
     '@nuxtjs/i18n',
+    'vue-sonner/nuxt',
   ],
   runtimeConfig: {
     resendApiKey: process.env.RESEND_API_KEY,
