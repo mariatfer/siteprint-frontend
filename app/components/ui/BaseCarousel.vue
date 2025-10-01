@@ -3,6 +3,8 @@ import type { Carousel, Media } from '@/interfaces/common'
 
 const props = defineProps<{
   carousel: Carousel[]
+  borderRadius?: boolean
+  height?: string
 }>()
 
 const { Swiper, SwiperSlide, modules } = useSwiper()
@@ -27,7 +29,6 @@ const carouselData = props.carousel?.map((item) =>
     <Swiper
       :modules="modules"
       :loop="true"
-      :mousewheel="true"
       :keyboard="true"
       :pagination="{ dynamicBullets: true, clickable: true }"
       :grab-cursor="true"
@@ -36,6 +37,7 @@ const carouselData = props.carousel?.map((item) =>
         prevEl: '.swiper-button-prev',
       }"
       class="carousel"
+      :style="{ height }"
     >
       <SwiperSlide
         v-for="carouselItem in carouselData"
@@ -48,6 +50,12 @@ const carouselData = props.carousel?.map((item) =>
           :alt="carouselItem.alternativeText"
           :title="carouselItem.alternativeText"
           :placeholder="carouselItem.placeholder"
+          fetchpriority="high"
+          preload
+          :sizes="'100vw'"
+          :width="1200"
+          :height="800"
+          quality="85"
         />
         <video
           v-else
@@ -69,6 +77,7 @@ const carouselData = props.carousel?.map((item) =>
 <style lang="scss" scoped>
 .carousel-wrapper {
   overflow: hidden;
+  border-radius: var(--s-border-radius);
 }
 
 .carousel {

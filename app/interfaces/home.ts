@@ -1,5 +1,5 @@
-import type { Media, Carousel, SmallCard } from './common'
-import type { SEO } from './seo'
+import type { Hero, Carousel, SmallCard } from '@/interfaces/common'
+import type { SEO } from '@/interfaces/seo'
 
 export interface KeyAdvantages {
   title: string
@@ -8,13 +8,9 @@ export interface KeyAdvantages {
 export interface HomeLocales {
   ourServices: string
   keyAdvantages: KeyAdvantages
+  productButton: string
+  ourStore: string
 }
-
-export interface Hero {
-  heroImage: Media
-  title: string
-}
-
 export interface Home {
   homeCarousel: Carousel[]
   hero: Hero

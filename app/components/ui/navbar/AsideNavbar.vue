@@ -1,24 +1,23 @@
 <script setup lang="ts">
 import type { Category, Aside } from '@/interfaces/navbar'
-import type { Product } from '@/interfaces/products'
-
+import { PRODUCTS_URL } from '@/constants/link'
 const props = defineProps<{
   showMenu: boolean
   asideLocales: Aside
   categories: Category[]
-  products: Product[]
 }>()
 
 const selectedCategoryId = ref<number | null>(null)
 
-const selectedCategory = computed(() =>
-  props.categories.find((cat) => cat.id === selectedCategoryId.value),
+const selectedCategory = computed(
+  () =>
+    props.categories.find((category) => category.id === selectedCategoryId.value) ?? null,
 )
 
-const filteredProducts = computed(() =>
-  props.products.filter(
-    (product) => product.category && product.category.id === selectedCategoryId.value,
-  ),
+const filteredProducts = computed(
+  () =>
+    selectedCategory.value?.products ??
+    props.categories.flatMap((category) => category.products),
 )
 
 const resetSelection = () => {
@@ -31,35 +30,21 @@ const emit = defineEmits<{
 
 const asideNavbarRef = ref<HTMLElement | null>(null)
 
-let listener: ((e: MouseEvent) => void) | null = null
-
-watch(
-  () => props.showMenu,
-  (isOpen) => {
-    if (isOpen) {
-      setTimeout(() => {
-        listener = (event: MouseEvent) => {
-          const target = asideNavbarRef.value
-          if (target && !target.contains(event.target as Node)) {
-            emit('update:showMenu', false)
-          }
-        }
-        document.addEventListener('click', listener!)
-      }, 0)
-    } else {
-      if (listener) {
-        document.removeEventListener('click', listener)
-        listener = null
-      }
-    }
+useClickOutside(
+  asideNavbarRef,
+  () => {
+    emit('update:showMenu', false)
+  },
+  {
+    enabled: computed(() => props.showMenu),
+    activateOnEnable: true,
+    delay: 10,
   },
 )
 
-onBeforeUnmount(() => {
-  if (listener) {
-    document.removeEventListener('click', listener)
-  }
-})
+const closeDropdown = () => {
+  emit('update:showMenu', false)
+}
 </script>
 
 <template>
@@ -114,7 +99,11 @@ onBeforeUnmount(() => {
                 :key="product.id"
                 class="aside-menu__item"
               >
-                <NuxtLinkLocale :href="product.slug" class="aside-menu__product">
+                <NuxtLinkLocale
+                  :href="`${PRODUCTS_URL}${product.slug}`"
+                  class="aside-menu__product"
+                  @click="closeDropdown"
+                >
                   {{ product.name }}
                 </NuxtLinkLocale>
               </li>

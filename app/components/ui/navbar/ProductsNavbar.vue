@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Product } from '@/interfaces/products'
-import type { CategoriesName } from '@/interfaces/navbar'
+import type { CategoriesName, ProductLite } from '@/interfaces/navbar'
+import { PRODUCTS_URL } from '@/constants/link'
 
-const props = defineProps<{
-  products: Product[]
+defineProps<{
+  products: ProductLite[]
   selectedCategory: CategoriesName | null
+  headerText: string
 }>()
 
 const emit = defineEmits<{
@@ -16,17 +17,10 @@ useClickOutside(productsNavbarRef, () => {
   emit('update:category', null)
 })
 
-const headerText = computed(() => {
-  if (!props.selectedCategory) return null
+const closeDropdown = () => {
+  emit('update:category', null)
+}
 
-  const product = props.products.find(
-    (product) => product.category.name === props.selectedCategory,
-  )
-
-  return product?.category.headerText ?? null
-})
-
-const productsSlug = '/productos'
 const MAX_CARDS = 2
 </script>
 
@@ -37,20 +31,22 @@ const MAX_CARDS = 2
       <ul v-if="products" class="products__list">
         <li v-for="product in products" :key="product.id" class="products__item">
           <NuxtLinkLocale
-            :href="`${productsSlug}${product.slug}`"
+            :href="`${PRODUCTS_URL}${product.slug}`"
             :title="product.title"
             class="products__link"
+            @click="closeDropdown"
           >
             {{ product.name }}
           </NuxtLinkLocale>
         </li>
       </ul>
     </section>
-    <section class="products__">
+    <section class="products__cards">
       <UiCardsProductCard
         v-for="product in products.slice(0, MAX_CARDS)"
         :key="product.id"
         :product="product"
+        @click="closeDropdown"
       />
     </section>
   </nav>

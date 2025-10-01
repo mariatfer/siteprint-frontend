@@ -11,10 +11,10 @@ defineProps<SmallCard>()
       :src="`http://localhost:1337${cardImage.url}`"
       :alt="cardImage.alternativeText"
       :title="cardImage.alternativeText"
-      :placeholder="cardImage.placeholder"
+      placeholder="/original-logo.svg"
       class="card__image"
     />
-    <h4 class="card__title">{{ title }}</h4>
+    <h3 class="card__title">{{ title }}</h3>
   </article>
 </template>
 

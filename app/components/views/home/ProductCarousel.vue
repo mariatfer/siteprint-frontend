@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Product } from '~/interfaces/products'
+import type { Product } from '@/interfaces/products'
+import { PRODUCTS_URL } from '@/constants/link'
 
 defineProps<{
   products: Product[]
@@ -12,7 +13,6 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
   <Swiper
     :modules="modules"
     :loop="true"
-    :mousewheel="true"
     :keyboard="true"
     :grab-cursor="true"
     :navigation="{
@@ -46,16 +46,26 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
       :key="product.id"
       class="carousel__article"
     >
-      <NuxtLinkLocale :href="product.slug" :title="product.title" class="carousel__link">
+      <NuxtLinkLocale
+        :href="`${PRODUCTS_URL}${product.slug}`"
+        :title="product.title"
+        class="carousel__link"
+      >
         <NuxtImg
           v-if="product.productImage"
           :src="`http://localhost:1337${product.productImage.url}`"
           :alt="product.productImage.alternativeText"
           :title="product.productImage.alternativeText"
           :placeholder="product.productImage.placeholder"
+          fetchpriority="high"
+          preload
+          :sizes="'100vw'"
+          :width="1200"
+          :height="800"
+          quality="85"
           class="carousel__image"
         />
-        <h4 class="carousel__product">{{ product.name }}</h4>
+        <h3 class="carousel__product">{{ product.name }}</h3>
       </NuxtLinkLocale>
     </SwiperSlide>
     <div class="swiper-button-next" aria-label="Next slide"></div>
@@ -68,7 +78,6 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
   &__article {
     width: 100%;
     height: 100%;
-    // position: relative;
     @include flex($align: stretch);
   }
 

@@ -1,4 +1,4 @@
-import type { Media } from './common'
+import type { Media } from '@/interfaces/common'
 
 export interface SEO {
   metaTitle: string

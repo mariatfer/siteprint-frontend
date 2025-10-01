@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { Product } from '@/interfaces/products'
 import { useCardHover } from '@/composables/useCardHover'
-defineProps<{ product: Product }>()
-const productsSlug = '/productos'
+import type { ProductLite } from '@/interfaces/navbar'
+import { PRODUCTS_URL } from '@/constants/link'
+defineProps<{ product: Product | ProductLite }>()
 const CARDS_CLASS_NAME = '.product-card'
 useCardHover(CARDS_CLASS_NAME)
 </script>
@@ -10,7 +11,7 @@ useCardHover(CARDS_CLASS_NAME)
 <template>
   <NuxtLinkLocale
     v-if="product.productImage"
-    :href="`${productsSlug}${product.slug}`"
+    :href="`${PRODUCTS_URL}${product.slug}`"
     class="product-card"
   >
     <div class="blob"></div>
@@ -19,6 +20,7 @@ useCardHover(CARDS_CLASS_NAME)
       <NuxtImg
         :src="`http://localhost:1337${product.productImage.url}`"
         :alt="product.productImage.alternativeText"
+        :title="product.productImage.alternativeText"
         placeholder="/original-logo.svg"
         class="product-card__image"
         placeholder-class="product-card__placeholder"
@@ -37,12 +39,13 @@ useCardHover(CARDS_CLASS_NAME)
   height: 12.5rem;
   background-color: var(--c-white);
   border-radius: 0.75em;
-  @include box-shadow($blur: 0.625rem, $color: #00000029);
+  @include box-shadow($blur: 0.625rem, $color: #0000005b);
   @include flex(column, space-between, space-between);
   cursor: pointer;
   padding: 0.125rem;
   overflow: hidden;
   transition: var(--t-transition);
+  border: 0.0313rem solid var(--mid-graphite);
 
   &__content {
     @include flex(column, $justify: space-between);

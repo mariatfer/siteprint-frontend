@@ -9,6 +9,7 @@ export default withNuxt({
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/ban-ts-comment': 'off',
     'prettier/prettier': ['error'],
+    "vue/no-v-html": "off"
   },
   plugins: {
     prettier: prettierPlugin,

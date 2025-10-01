@@ -61,8 +61,7 @@ export const useImageColor = () => {
       const color = await getAverageColorAroundTopLeft(imgUrl, size)
       averageColor.value = color
       contrastColor.value = getContrastColor(color)
-    } catch (error) {
-      console.error('Error analyzing image color:', error)
+    } catch {
       averageColor.value = '#000000'
       contrastColor.value = 'var(--c-white)'
     }

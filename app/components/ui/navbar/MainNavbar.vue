@@ -1,36 +1,33 @@
 <script setup lang="ts">
 import { resolveIcons } from '@/composables/useResolveAssets'
 import type { NavbarLocales, CategoriesName, Category } from '@/interfaces/navbar'
-import type { Product } from '@/interfaces/products'
+import { getCategories } from '@/services/category'
 const { data: navbarLocales } = await useLocales<NavbarLocales>('navbar')
-const { find } = useStrapi()
 
-const { data: categories } = await find<Category>('categories')
-const { data: products } = await find<Product>('products', {
-  populate: {
-    category: {
-      fields: ['name', 'headerText'],
-    },
-    productImage: {
-      fields: ['url', 'alternativeText'],
-    },
-  },
-})
-
+const categories = ref<Category[]>([])
+categories.value = await getCategories()
 const selectedCategory = ref<CategoriesName | null>(null)
 
 const orderedCategories = computed(() => {
-  return [...categories].sort((a, b) => a.order - b.order)
+  return [...categories.value].sort((a, b) => a.order - b.order)
+})
+
+const selectedCategoryData = computed(() => {
+  return (
+    categories.value.find((category) => category.name === selectedCategory.value) ?? null
+  )
 })
 
 const filteredProducts = computed(() => {
-  if (!selectedCategory.value) return products
-  return products.filter((product) => {
-    const category = product.category
-    return category?.name === selectedCategory.value
-  })
+  return (
+    selectedCategoryData.value?.products ??
+    categories.value.flatMap((category) => category.products)
+  )
 })
 
+const headerText = computed(() => {
+  return selectedCategoryData.value?.headerText ?? ''
+})
 const showMenu = ref(false)
 
 function toggleMenu() {
@@ -55,12 +52,12 @@ function toggleMenu() {
             class="navbar__image"
             placeholder
           />
-          <h2 class="navbar__title">
+          <div class="navbar__title" role="heading">
             {{ navbarLocales.logo.enterpriseTitle.text }}
             <span class="navbar__span">{{
               navbarLocales.logo.enterpriseTitle.span
             }}</span>
-          </h2>
+          </div>
         </NuxtLinkLocale>
       </div>
 
@@ -92,13 +89,13 @@ function toggleMenu() {
         v-model:category="selectedCategory"
         :products="filteredProducts"
         :selected-category="selectedCategory"
+        :header-text="headerText"
       />
     </Transition>
     <UiNavbarAsideNavbar
       v-model:show-menu="showMenu"
       :aside-locales="navbarLocales.aside"
-      :categories="categories"
-      :products="products"
+      :categories="orderedCategories"
     />
   </header>
 </template>
@@ -107,8 +104,10 @@ function toggleMenu() {
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 120rem;
   z-index: 1000;
 
   &__principal {
@@ -139,6 +138,7 @@ function toggleMenu() {
     color: var(--c-white);
     font-size: var(--s-font-h4);
     transition: var(--t-transition);
+    order: 1;
     &:hover {
       color: var(--c-secondary);
       .navbar__span {
@@ -159,6 +159,7 @@ function toggleMenu() {
   &__image {
     width: 3.1082rem;
     height: 3rem;
+    order: 0;
     @include responsive() {
       width: auto;
       height: 2rem;
@@ -171,15 +172,11 @@ function toggleMenu() {
     font-size: var(--s-font-small);
     font-weight: bold;
     transition: var(--t-transition);
+    padding: 0.3rem;
+    border-radius: 50%;
     &:hover {
       color: var(--c-secondary);
-    }
-    @include responsive() {
-      padding: 0.3rem;
-      &:hover {
-        border-radius: 50%;
-        background-color: var(--c-dark-blue);
-      }
+      background-color: var(--c-dark-blue);
     }
   }
 

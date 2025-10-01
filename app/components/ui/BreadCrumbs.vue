@@ -2,20 +2,34 @@
 defineProps<{
   color?: string
   positionAbsolute?: boolean
+  noPadding?: boolean
 }>()
 const route = useRoute()
-const segments = route.path.split('/').filter(Boolean)
+const segments = route.path
+  .split('/')
+  .filter(Boolean)
+  .map((segment) => segment.replace(/-/g, ' '))
 
 const getLink = (index: number) => {
   return '/' + segments.slice(0, index + 1).join('/')
 }
+const GO_TO = 'Ir a '
+const HOME = 'Inicio'
 </script>
 
 <template>
-  <nav class="bread-crumbs" :class="{ 'bread-crumbs--absolute': positionAbsolute }">
+  <nav
+    class="bread-crumbs"
+    :class="{
+      'bread-crumbs--absolute': positionAbsolute,
+      'bread-crumbs--no-padding': noPadding,
+    }"
+  >
     <ul class="bread-crumbs__list" :style="{ color }">
       <li class="bread-crumbs__item" :style="{ color }">
-        <NuxtLink to="/" class="bread-crumbs__link"> Inicio </NuxtLink>
+        <NuxtLink to="/" :title="`${GO_TO}${HOME}`" class="bread-crumbs__link">{{
+          HOME
+        }}</NuxtLink>
         <span v-if="segments.length > 0" class="bread-crumbs__separator"> / </span>
       </li>
       <li
@@ -24,9 +38,18 @@ const getLink = (index: number) => {
         class="bread-crumbs__item"
         :style="{ color }"
       >
-        <NuxtLink :to="getLink(index)" class="bread-crumbs__link">
-          {{ segment }}
-        </NuxtLink>
+        <template v-if="index < segments.length - 1">
+          <NuxtLink
+            :to="getLink(index)"
+            :title="`${GO_TO}${segment}`"
+            class="bread-crumbs__link"
+          >
+            {{ segment }}
+          </NuxtLink>
+        </template>
+        <template v-else>
+          <span class="bread-crumbs__current">{{ segment }}</span>
+        </template>
         <span v-if="index < segments.length - 1" class="bread-crumbs__separator">
           /
         </span>
@@ -37,35 +60,52 @@ const getLink = (index: number) => {
 
 <style lang="scss" scoped>
 .bread-crumbs {
-  mix-blend-mode: luminosity;
+  padding: 0.7rem var(--s-padding);
+  @include responsive() {
+    padding: 0.7rem var(--s-padding-mobile);
+  }
+
+  &--no-padding {
+    padding: 0.7rem var(--s-padding-mobile);
+  }
 
   &--absolute {
     position: absolute;
     z-index: 12;
   }
 
-  &__list {
-    margin: 0.7rem;
-  }
-
   &__list,
   &__item {
     @include flex($justify: flex-start, $gap: 0.2rem);
-    font-family: var(--f-font-lato);
-    font-size: var(--s-font-small);
   }
 
   &__separator {
     opacity: 0.8;
+    font-family: var(--f-font-lato);
+    font-size: var(--s-font-small);
   }
   &__link {
-    font-style: italic;
     transition: var(--t-transition);
-    opacity: 0.8;
     &:hover {
       opacity: 1;
       text-decoration: underline;
     }
+  }
+  &__link,
+  &__current {
+    font-style: italic;
+    opacity: 0.8;
+  }
+  &__current {
+    font-family: var(--f-font-raleway);
+    font-size: var(--s-font-cta);
+    opacity: 0.9;
+  }
+
+  &__link,
+  &__current {
+    font-style: italic;
+    opacity: 0.8;
   }
 }
 </style>

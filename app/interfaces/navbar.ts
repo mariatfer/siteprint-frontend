@@ -44,12 +44,22 @@ export type CategoriesName =
   | 'Fotografía'
   | 'Cartelería'
 
+export interface ProductLite {
+  id: number
+  name: string
+  description: string
+  slug: string
+  title: string
+  productImage: Image
+}
+
 export interface Category {
   id: number
   name: CategoriesName
   title: string
   slug?: string
   order: number
+  products: ProductLite[]
   headerText: string
 }
 

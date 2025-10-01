@@ -1,1 +1,1 @@
-export const COMMON_COMPONENTS = ['navbar', 'footer', 'products'] as const
+export const COMMON_COMPONENTS = ['navbar', 'footer', 'form'] as const

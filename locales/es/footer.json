@@ -66,32 +66,6 @@
   ],
   "policies": {
     "id": 1,
-    "name": "Area legal",
-    "links": [
-      {
-        "id": 1,
-        "name": "Política de privacidad",
-        "link": "/politica-de-privacidad",
-        "title": "Ir a la página de política de privacidad"
-      },
-      {
-        "id": 2,
-        "name": "Condiciones de uso",
-        "link": "/condiciones-de-uso",
-        "title": "Ir a la página de condiciones de uso"
-      },
-      {
-        "id": 3,
-        "name": "Política de cookies",
-        "link": "/policita-de-cookies",
-        "title": "Ir a la página de política de cookies"
-      },
-      {
-        "id": 4,
-        "name": "Aviso legal",
-        "link": "/aviso-legal",
-        "title": "Ir a la página de aviso legal"
-      }
-    ]
+    "name": "Area legal"
   }
 }

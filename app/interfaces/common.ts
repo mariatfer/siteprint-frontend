@@ -40,7 +40,7 @@ export type Media = {
 
 export interface Carousel {
   id: number
-  description: string | null
+  description?: string | null
   media: Media
   cover: Media
   link?: string
@@ -55,4 +55,14 @@ export interface SmallCard {
   id: number
   cardImage: Media
   title: string
+}
+
+export interface Hero {
+  heroImage: Media
+  title: string
+  description: string
+}
+
+export type Slug = {
+  slug: string
 }
