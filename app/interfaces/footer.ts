@@ -1,4 +1,4 @@
-import type { Icon } from './common'
+import type { Icon } from '@/interfaces/common'
 
 interface Link {
   id: number
@@ -11,7 +11,7 @@ interface Link {
 interface Category {
   id: number
   name: string
-  links: Link[]
+  links?: Link[]
 }
 
 export interface Footer {
