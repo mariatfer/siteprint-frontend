@@ -1,53 +1,6 @@
 {
   "quoteForm": {
     "title": "Solicitar de presupuesto",
-    "inputFields": [
-      {
-        "id": 0,
-        "name": "name",
-        "label": "Nombre",
-        "ariaLabel": "Nombre",
-        "type": "text",
-        "placeholder": "Ej: Juan Pérez González",
-        "autoComplete": "name",
-        "disabled": false,
-        "required": true
-      },
-      {
-        "id": 1,
-        "name": "email",
-        "label": "Correo electrónico",
-        "ariaLabel": "Correo electrónico",
-        "type": "email",
-        "placeholder": "Ej: ejemplo@correo.com",
-        "autoComplete": "email",
-        "disabled": false,
-        "required": true
-      },
-      {
-        "id": 3,
-        "name": "subject",
-        "label": "Asunto",
-        "ariaLabel": "Asunto",
-        "type": "text",
-        "placeholder": "Ej: Solicitud de ...",
-        "autoComplete": "off",
-        "disabled": false,
-        "required": true
-      }
-    ],
-    "textArea": {
-      "id": 4,
-      "name": "message",
-      "label": "Mensaje",
-      "ariaLabel": "Mensaje",
-      "placeholder": "¿Tienes un proyecto en mente? Déjanos los detalles para prepararte un presupuesto personalizado.",
-      "disabled": false,
-      "required": true
-    },
-    "sendButton": {
-      "message": "Solicitar",
-      "type": "submit"
-    }
+    "buttonLabel": "Solicitar"
   }
 }
