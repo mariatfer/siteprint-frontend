@@ -3,13 +3,13 @@ const props = withDefaults(
   defineProps<{
     to?: string
     href?: string
-    type?: string
+    type?: 'button' | 'submit' | 'reset'
     action?: () => void
   }>(),
   {
     to: '',
     href: '',
-    type: '',
+    type: 'button',
     action: undefined,
   },
 )
@@ -30,10 +30,14 @@ const linkAttrs = computed(() => {
 })
 
 function handleClick(event: Event) {
+  console.log('🟢 handleClick ejecutado con type:', props.type)
+  if (props.type === 'submit') return
+
   if (props.action) {
     event.preventDefault()
     props.action()
   }
+
   emit('click', event)
 }
 </script>

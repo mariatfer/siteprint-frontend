@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ICONS } from '@/constants/icons'
 import { MAX_SIZE_MB, ALLOWED_TYPES, ALLOWED_EXTENSIONS } from '@/constants/files'
+import type { FileUpload } from '@/interfaces/form'
+
+const props = defineProps<FileUpload>()
 
 const emit = defineEmits<{
   (e: 'files-selected', files: File[]): void
@@ -36,12 +39,12 @@ const validateFile = (file: File): boolean => {
   const isExtensionAllowed = ext && FILE_VALIDATION.allowedExtensions.includes(ext)
 
   if (!isTypeAllowed && !isExtensionAllowed) {
-    errorMessage.value = `Formato no permitido: ${truncateFileName(file.name)}`
+    errorMessage.value = `${props.errors.unsupportedFormat}: ${truncateFileName(file.name)}`
     return false
   }
 
   if (file.size > FILE_VALIDATION.maxSizeMB * 1024 * 1024) {
-    errorMessage.value = `El archivo ${truncateFileName(file.name)} supera ${FILE_VALIDATION.maxSizeMB}MB`
+    errorMessage.value = `${truncateFileName(file.name)} ${props.errors.sizeExceeded} ${FILE_VALIDATION.maxSizeMB}MB`
     return false
   }
 
@@ -96,10 +99,11 @@ const onChange = (e: Event) => {
     <label for="file-input" class="file-upload__label">
       <Icon :name="ICONS.upload" class="file-upload__icon" />
       <p class="file-upload__p">
-        <span class="file-upload__highlight">Haz clic</span> o arrastra tus archivos aquí
+        <span class="file-upload__highlight">{{ selectFiles.highlight }}</span>
+        {{ selectFiles.normal }}
       </p>
       <span class="file-upload__span">
-        Formatos soportados: PDF, PNG, JPG (máx. 5MB)
+        {{ permittedFormats }}
       </span>
     </label>
 
@@ -131,7 +135,7 @@ const onChange = (e: Event) => {
   border: 0.0938rem solid var(--c-dark-brown);
   border-radius: var(--s-border-radius);
   padding: 2rem;
-  margin: 2rem 0 0.5rem 0;
+  margin: 1rem 0 0.5rem 0;
   background: #fffdfd;
   transition: var(--t-transition);
   text-align: center;

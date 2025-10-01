@@ -95,7 +95,7 @@ function toggleMenu() {
     <UiNavbarAsideNavbar
       v-model:show-menu="showMenu"
       :aside-locales="navbarLocales.aside"
-      :categories="categories"
+      :categories="orderedCategories"
     />
   </header>
 </template>

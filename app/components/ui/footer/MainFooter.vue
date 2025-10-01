@@ -18,7 +18,7 @@ policies.value = await getPolicies()
         class="footer--width"
       >
         <h3 class="footer__category-name">{{ category.name }}</h3>
-        <ul class="footer--width">
+        <ul>
           <li v-for="link in category.links" :key="link.id" class="footer__item">
             <NuxtLinkLocale :to="link.link" :title="link.title" class="footer__link">
               <icon
@@ -32,24 +32,13 @@ policies.value = await getPolicies()
           </li>
         </ul>
       </li>
-      <li v-if="isResponsiveResolution" class="footer--width">
-        <h3 class="footer__category-name">{{ footerLocales.policies.name }}</h3>
-        <ul class="footer--width">
-          <li v-for="policy in policies" :key="policy.id" class="footer__item">
-            <NuxtLinkLocale
-              :to="`/${policy.slug}`"
-              :title="policy.title"
-              class="footer__link"
-            >
-              {{ policy.name }}
-            </NuxtLinkLocale>
-          </li>
-        </ul>
-      </li>
     </ul>
-    <ul v-if="!isResponsiveResolution" class="footer__policies">
+    <ul class="footer__policies">
+      <h3 v-if="isResponsiveResolution" class="footer__category-name">
+        {{ footerLocales.policies.name }}
+      </h3>
       <template v-for="(policy, index) in policies" :key="policy.id">
-        <li class="footer__policy">
+        <li :class="isResponsiveResolution ? 'footer__item' : 'footer__policy'">
           <NuxtLinkLocale
             :to="`/${policy.slug}`"
             :title="policy.title"
@@ -57,7 +46,10 @@ policies.value = await getPolicies()
             >{{ policy.name }}</NuxtLinkLocale
           >
         </li>
-        <li v-if="index < footerLocales.policies.links.length - 1" class="point"></li>
+        <li
+          v-if="index < policies.length - 1 && !isResponsiveResolution"
+          class="point"
+        ></li>
       </template>
     </ul>
     <h3 class="footer__copyright">{{ footerLocales.copyright }}</h3>
@@ -108,13 +100,19 @@ policies.value = await getPolicies()
   }
 
   &__icon {
-    width: 1.1875rem;
-    height: 1.1875rem;
+    width: 1rem;
+    height: 1rem;
   }
 
   &__policies {
     @include flex($gap: 0.8rem);
     margin: 2rem 0;
+    @include responsive() {
+      @include flex(column, flex-start, flex-start);
+      padding: 0 var(--s-padding-mobile);
+      margin: 1rem 0 2rem 0;
+      width: 100%;
+    }
   }
 
   &__policy {

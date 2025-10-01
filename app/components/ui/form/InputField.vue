@@ -1,7 +1,9 @@
 <script setup lang="ts">
-withDefaults(
+import { validateField } from '@/utils/validator'
+
+const props = withDefaults(
   defineProps<{
-    id: string
+    id: string | number
     name: string
     label: string
     ariaLabel: string
@@ -10,18 +12,20 @@ withDefaults(
     autoComplete?: string
     disabled?: boolean
     required?: boolean
+    externalError?: string
   }>(),
   {
     type: 'text',
     autoComplete: 'off',
     disabled: false,
     required: false,
+    externalError: '',
   },
 )
 
 const inputValue = ref('')
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
+  (e: 'update:modelValue' | 'blur', value: string): void
 }>()
 
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
@@ -35,22 +39,43 @@ watch(inputValue, (newValue) => {
 
 const isFocused = ref(false)
 const showPlaceholder = ref(false)
+const localError = ref<string | undefined>()
+
+const displayedError = computed(() => localError.value || props.externalError)
+
+watch(
+  () => props.externalError,
+  (newVal) => {
+    if (!newVal) {
+      localError.value = undefined
+    }
+  },
+)
+
+function onInput(e: Event) {
+  const value = (e.target as HTMLInputElement).value
+  localError.value = undefined
+  emit('update:modelValue', value)
+}
 
 function handleFocus() {
   isFocused.value = true
   showPlaceholder.value = true
 }
 
-function handleBlur() {
+function handleBlur(e: FocusEvent) {
   isFocused.value = false
   showPlaceholder.value = false
+  const value = (e.target as HTMLInputElement).value
+  localError.value = validateField(props.name, value)
+  emit('blur', value)
 }
 </script>
 
 <template>
   <div class="field">
     <input
-      :id="id"
+      :id="`${id}-${name}`"
       v-model="inputValue"
       :type="type"
       :name="name"
@@ -60,10 +85,16 @@ function handleBlur() {
       :disabled="disabled"
       :required="required"
       class="field__input"
+      :class="{ 'field__input--error': displayedError }"
       @focus="handleFocus"
       @blur="handleBlur"
+      @input="onInput"
     />
-    <label :for="id" class="field__label" :class="{ active: isFocused || inputValue }">
+    <label
+      :for="`${id}-${name}`"
+      class="field__label"
+      :class="{ active: isFocused || inputValue }"
+    >
       <span
         v-for="(char, index) in label"
         :key="`${char}-${index}`"
@@ -73,6 +104,7 @@ function handleBlur() {
         {{ char }}
       </span>
     </label>
+    <span class="field__error">{{ displayedError }}</span>
   </div>
 </template>
 
@@ -80,7 +112,7 @@ function handleBlur() {
 .field {
   position: relative;
   width: 100%;
-  margin: 1.6rem 0 0 0;
+  margin: 1.4rem 0 0 0;
   @include flex(column, flex-start);
 
   &__label {
@@ -110,6 +142,10 @@ function handleBlur() {
     border-bottom: 0.0938rem solid var(--c-graphite);
     transition: var(--t-transition);
 
+    &--error {
+      border-color: #cc0000;
+    }
+
     &:hover {
       @include box-shadow(0, 10px, 20px, -15px, rgba(0, 162, 255, 0.877));
     }
@@ -125,6 +161,11 @@ function handleBlur() {
     }
   }
 
+  &__error {
+    margin: 0.25rem 0 0 0;
+    color: #cc0000;
+    height: 1.1875rem;
+  }
   .active .field__span {
     color: var(--c-dark-blue);
     transform: translateY(-0.4375rem);
