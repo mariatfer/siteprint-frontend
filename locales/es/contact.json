@@ -1,0 +1,29 @@
+{
+  "heroCards": [
+    {
+      "id": 0,
+      "title": "Horarios de contacto",
+      "info": [
+        { "id": 0, "highlight": "De lunes a viernes:", "normal": "9:00am - 8:30pm" },
+        { "id": 1, "highlight": "Sábados:", "normal": "9:00am - 3:00pm" }
+      ],
+      "icon": {
+        "name": "calendar",
+        "ariaLabel": "Icono de calendario"
+      }
+    },
+    {
+      "id": 1,
+      "title": "Métodos de contacto",
+      "info": [
+        { "id": 0, "highlight": "Teléfono:", "normal": "+34 692 54 87" },
+        { "id": 1, "highlight": "Correo:", "normal": "afr.impresion@gmail.com" }
+      ],
+      "icon": { "name": "contact" }
+    }
+  ],
+  "quoteForm": {
+    "title": "Contáctanos",
+    "buttonLabel": "Enviar"
+  }
+}

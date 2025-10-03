@@ -46,7 +46,7 @@
           "name": "Instagram",
           "icon": {
             "name": "instagram",
-            "alt": "Icono de Instagram"
+            "ariaLabel": "Icono de Instagram"
           },
           "link": "/",
           "title": "Ir al instagram de AFR Diseño & Impresión"
@@ -56,7 +56,7 @@
           "name": "Tiktok",
           "icon": {
             "name": "tiktok",
-            "alt": "Icono de Tiktok"
+            "ariaLabel": "Icono de Tiktok"
           },
           "link": "/",
           "title": "Ir al tiktok de AFR Diseño & Impresión"
