@@ -8,7 +8,11 @@ export function useFormSubmit() {
   const success = ref(false)
   const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337'
 
-  const sendForm = async (formValues: FormValues, formType: FormType) => {
+  const sendForm = async (
+    formValues: FormValues,
+    formType: FormType,
+    productName?: string,
+  ) => {
     isSending.value = true
     error.value = null
     success.value = false
@@ -30,6 +34,10 @@ export function useFormSubmit() {
           formData.append(key, String(value))
         }
       })
+
+      if (formType === 'quote' && productName) {
+        formData.append('productName', productName)
+      }
 
       formValues.files.forEach((file) => {
         formData.append('files[]', file)
