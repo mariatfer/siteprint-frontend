@@ -24,7 +24,8 @@ policies.value = await getPolicies()
               <icon
                 v-if="link.icon"
                 :name="resolveIcons(link.icon.name)"
-                :alt="link.icon.alt"
+                role="img"
+                :aria-label="link.icon.ariaLabel"
                 class="footer__icon"
               />
               {{ link.name }}

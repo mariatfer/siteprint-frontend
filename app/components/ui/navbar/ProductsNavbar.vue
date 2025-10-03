@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { CategoriesName, ProductLite } from '@/interfaces/navbar'
-import { PRODUCTS_URL } from '@/constants/link'
 
 defineProps<{
   products: ProductLite[]
@@ -22,6 +21,7 @@ const closeDropdown = () => {
 }
 
 const MAX_CARDS = 2
+const { productUrl } = useAppUrls()
 </script>
 
 <template>
@@ -31,7 +31,7 @@ const MAX_CARDS = 2
       <ul v-if="products" class="products__list">
         <li v-for="product in products" :key="product.id" class="products__item">
           <NuxtLinkLocale
-            :href="`${PRODUCTS_URL}${product.slug}`"
+            :href="productUrl(product.slug)"
             :title="product.title"
             class="products__link"
             @click="closeDropdown"

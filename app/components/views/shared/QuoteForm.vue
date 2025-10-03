@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { QuoteForm } from '@/interfaces/products'
+import type { QuoteForm } from '@/interfaces/common'
 import { validateFormData, isFormValid } from '@/utils/validator'
 import type {
   FormData,
@@ -13,6 +13,7 @@ import { toast } from 'vue-sonner'
 const props = defineProps<{
   locales: QuoteForm
   formType: FormType
+  productName?: string
 }>()
 
 const { data: formLocales } = await useLocales<FormLocales>('form')
@@ -34,6 +35,20 @@ function handleFilesFromChild(files: File[]) {
 const { sendForm, isSending, success, error } = useFormSubmit()
 const { toastMessages } = formLocales
 
+const formKey = ref(0)
+
+function resetForm() {
+  Object.assign(formValues, {
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+    files: [],
+  })
+  formErrors.value = {}
+  formKey.value++
+}
+
 const onSubmit = async () => {
   const formDataToValidate: FormData = {
     name: formValues.name,
@@ -41,6 +56,7 @@ const onSubmit = async () => {
     subject: formValues.subject,
     message: formValues.message,
   }
+
   const errors = validateFormData(formDataToValidate)
   formErrors.value = errors
   if (!isFormValid(errors)) {
@@ -51,14 +67,14 @@ const onSubmit = async () => {
   }
 
   const toastId = toast.loading(toastMessages.loading.title)
-
-  await sendForm(formValues, props.formType)
+  await sendForm(formValues, props.formType, props.productName)
 
   if (success.value) {
     toast.success(toastMessages.success.title, {
       id: toastId,
       description: toastMessages.success.description,
     })
+    resetForm()
   } else if (error.value) {
     toast.error(toastMessages.error.title, {
       id: toastId,
@@ -73,7 +89,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-  <form v-if="formLocales" class="quote-form" autocomplete="on">
+  <form v-if="formLocales" :key="formKey" class="quote-form" autocomplete="on">
     <UiTheTitle v-if="locales.title">{{ locales.title }}</UiTheTitle>
     <div class="line"></div>
     <template v-if="formLocales.inputFields">

@@ -70,7 +70,8 @@ function toggleMenu() {
       >
         <icon
           :name="resolveIcons(navbarLocales.login.icon.name)"
-          :alt="navbarLocales.login.icon.alt"
+          role="img"
+          :aria-label="navbarLocales.login.icon.ariaLabel"
           class="navbar__login-icon"
         />
       </NuxtLinkLocale>

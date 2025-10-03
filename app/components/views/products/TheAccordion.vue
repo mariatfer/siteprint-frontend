@@ -47,7 +47,7 @@ watch(isOpen, async () => {
   <div class="accordion">
     <button class="accordion__button" :aria-expanded="isOpen" @click="toggleAccordion">
       {{ label }}
-      <Icon :name="isOpen ? ICONS.topArrow : ICONS.bottomArrow" />
+      <Icon :name="isOpen ? ICONS.topArrow : ICONS.bottomArrow" aria-hidden="true" />
     </button>
 
     <div ref="contentRef" class="accordion__content">
