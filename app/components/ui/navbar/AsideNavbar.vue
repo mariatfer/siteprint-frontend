@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Category, Aside } from '@/interfaces/navbar'
-import { PRODUCTS_URL } from '@/constants/link'
 const props = defineProps<{
   showMenu: boolean
   asideLocales: Aside
@@ -45,6 +44,8 @@ useClickOutside(
 const closeDropdown = () => {
   emit('update:showMenu', false)
 }
+
+const { productUrl } = useAppUrls()
 </script>
 
 <template>
@@ -76,7 +77,8 @@ const closeDropdown = () => {
                 {{ category.name }}
                 <Icon
                   :name="resolveIcons(asideLocales.rightArrow.name)"
-                  :alt="asideLocales.rightArrow.alt"
+                  role="img"
+                  :aria-label="asideLocales.rightArrow.ariaLabel"
                   class="aside-menu__icon"
                 />
               </button>
@@ -87,7 +89,8 @@ const closeDropdown = () => {
             <button class="aside-menu__back" @click="resetSelection">
               <Icon
                 :name="resolveIcons(asideLocales.leftArrow.name)"
-                :alt="asideLocales.leftArrow.alt"
+                role="img"
+                :aria-label="asideLocales.leftArrow.ariaLabel"
                 class="aside-menu__icon"
               />
               {{ asideLocales.back }}
@@ -100,7 +103,7 @@ const closeDropdown = () => {
                 class="aside-menu__item"
               >
                 <NuxtLinkLocale
-                  :href="`${PRODUCTS_URL}${product.slug}`"
+                  :to="productUrl(product.slug)"
                   class="aside-menu__product"
                   @click="closeDropdown"
                 >

@@ -2,16 +2,16 @@
 import type { Product } from '@/interfaces/products'
 import { useCardHover } from '@/composables/useCardHover'
 import type { ProductLite } from '@/interfaces/navbar'
-import { PRODUCTS_URL } from '@/constants/link'
 defineProps<{ product: Product | ProductLite }>()
 const CARDS_CLASS_NAME = '.product-card'
 useCardHover(CARDS_CLASS_NAME)
+const { productUrl } = useAppUrls()
 </script>
 
 <template>
   <NuxtLinkLocale
     v-if="product.productImage"
-    :href="`${PRODUCTS_URL}${product.slug}`"
+    :to="productUrl(product.slug)"
     class="product-card"
   >
     <div class="blob"></div>

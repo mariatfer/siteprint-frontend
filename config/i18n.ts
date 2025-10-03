@@ -5,7 +5,7 @@ export default {
   lazy: true,
   defaultLocale: 'es',
   locales: [{ code: 'es', file: '../../locales/es.json', language: 'es' }],
-  strategy: 'prefix_and_default',
+  strategy: 'prefix_except_default',
   customRoutes: 'config',
   pages,
 } as Partial<ModuleOptions>

@@ -16,7 +16,7 @@
     "ariaLabel": "Buscar en el sitio",
     "icon": {
       "name": "search",
-      "alt": "Icono de búsqueda"
+      "ariaLabel": "Icono de búsqueda"
     }
   },
   "login": {
@@ -25,7 +25,7 @@
     "title": "Ir a la página de inicio de sesión",
     "icon": {
       "name": "person",
-      "alt": "Icono de usuario"
+      "ariaLabel": "Icono de usuario"
     }
   },
   "logout": {
@@ -39,11 +39,11 @@
     "back": "Volver a categorías",
     "rightArrow": {
       "name": "rightArrow",
-      "alt": "Flecha hacia la derecha"
+      "ariaLabel": "Flecha hacia la derecha"
     },
     "leftArrow": {
       "name": "leftArrow",
-      "alt": "Flecha hacia la izquierda"
+      "ariaLabel": "Flecha hacia la izquierda"
     }
   }
 }

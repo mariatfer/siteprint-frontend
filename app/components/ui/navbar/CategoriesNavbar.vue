@@ -28,6 +28,7 @@ defineEmits(['update:selectedCategory'])
   background-color: var(--c-light-graphite);
   padding: 0.125rem var(--s-padding) 0;
   height: 1.7813rem;
+  overflow: hidden;
 
   @include responsive() {
     display: none;

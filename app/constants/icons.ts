@@ -13,4 +13,7 @@ export const ICONS = {
   tiktok: 'cib:tiktok',
   upload: 'line-md:uploading-loop',
   close: 'iconamoon:close',
+  calendar:
+    'streamline:interface-calendar-date-month-thirty-thirty-calendar-date-week-day-month',
+  contact: 'streamline:contact-phonebook-2',
 }

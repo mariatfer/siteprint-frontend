@@ -32,45 +32,49 @@ if (about.value) {
 </script>
 
 <template>
-  <UiSEOTitle v-if="about?.seo" :meta-title="about.seo.metaTitle" />
-  <UiBreadCrumbs :color="contrastColor" :position-absolute="true" :no-padding="true" />
-  <UiTheHero v-if="about?.hero" :hero="about.hero" />
-  <section v-if="about?.content" class="about" v-html="htmlContent" />
+  <div class="about">
+    <UiSEOTitle v-if="about?.seo" :meta-title="about.seo.metaTitle" />
+    <UiBreadCrumbs :color="contrastColor" :position-absolute="true" :no-padding="true" />
+    <UiTheHero v-if="about?.hero" :hero="about.hero" />
+    <section v-if="about?.content" class="about__content" v-html="htmlContent" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .about {
-  padding: 0 var(--s-padding);
-  margin: var(--s-margin) 0;
-  @include responsive() {
-    padding: 0 var(--s-padding-mobile);
-    margin: var(--s-margin-mobile) 0;
-  }
+  &__content {
+    padding: 0 var(--s-padding);
+    margin: var(--s-margin) 0;
+    @include responsive() {
+      padding: 0 var(--s-padding-mobile);
+      margin: var(--s-margin-mobile) 0;
+    }
 
-  &:deep(h2) {
-    margin: 3rem 0 2rem 0;
-    font-weight: 600;
-  }
+    &:deep(h2) {
+      margin: 3rem 0 2rem 0;
+      font-weight: 600;
+    }
 
-  &:deep(h3) {
-    margin: 1.5rem 0;
-  }
+    &:deep(h3) {
+      margin: 1.5rem 0;
+    }
 
-  &:deep(p) {
-    margin: 1rem 0;
-  }
+    &:deep(p) {
+      margin: 1rem 0;
+    }
 
-  &:deep(ul) {
-    padding: 0 0 0 2rem;
-  }
+    &:deep(ul) {
+      padding: 0 0 0 2rem;
+    }
 
-  &:deep(li) {
-    list-style: lower-latin;
-  }
+    &:deep(li) {
+      list-style: lower-latin;
+    }
 
-  &:deep(a) {
-    color: var(--c-primary);
-    font-weight: 600;
+    &:deep(a) {
+      color: var(--c-primary);
+      font-weight: 600;
+    }
   }
 }
 </style>

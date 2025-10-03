@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { Product } from '@/interfaces/products'
-import { PRODUCTS_URL } from '@/constants/link'
 
 defineProps<{
   products: Product[]
 }>()
+
+const { productUrl } = useAppUrls()
 
 const { Swiper, SwiperSlide, modules } = useSwiper()
 </script>
@@ -47,7 +48,7 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
       class="carousel__article"
     >
       <NuxtLinkLocale
-        :href="`${PRODUCTS_URL}${product.slug}`"
+        :href="productUrl(product.slug)"
         :title="product.title"
         class="carousel__link"
       >

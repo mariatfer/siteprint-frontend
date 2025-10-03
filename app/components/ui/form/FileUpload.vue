@@ -97,7 +97,7 @@ const onChange = (e: Event) => {
     />
 
     <label for="file-input" class="file-upload__label">
-      <Icon :name="ICONS.upload" class="file-upload__icon" />
+      <Icon :name="ICONS.upload" class="file-upload__icon" aria-hidden="true" />
       <p class="file-upload__p">
         <span class="file-upload__highlight">{{ selectFiles.highlight }}</span>
         {{ selectFiles.normal }}

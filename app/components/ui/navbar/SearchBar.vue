@@ -13,7 +13,8 @@ defineProps<Search>()
     />
     <Icon
       :name="resolveIcons($props.icon.name)"
-      :alt="$props.icon.alt"
+      role="img"
+      :aria-label="$props.icon.ariaLabel"
       class="search__icon"
     />
   </div>

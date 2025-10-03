@@ -31,13 +31,18 @@ useSeoMeta({
 </script>
 
 <template>
-  <UiSEOTitle v-if="productData?.seo.metaTitle" :meta-title="productData.seo.metaTitle" />
-  <UiBreadCrumbs :color="contrastColor" :position-absolute="true" :no-padding="true" />
-  <UiTheHero v-if="productData?.hero" :hero="productData.hero" />
-  <ViewsProductsCategoryGrid
-    v-for="(category, index) in categories"
-    :key="category.id"
-    :category="category"
-    :index="index"
-  />
+  <div>
+    <UiSEOTitle
+      v-if="productData?.seo.metaTitle"
+      :meta-title="productData.seo.metaTitle"
+    />
+    <UiBreadCrumbs :color="contrastColor" :position-absolute="true" :no-padding="true" />
+    <UiTheHero v-if="productData?.hero" :hero="productData.hero" />
+    <ViewsProductsCategoryGrid
+      v-for="(category, index) in categories"
+      :key="category.id"
+      :category="category"
+      :index="index"
+    />
+  </div>
 </template>

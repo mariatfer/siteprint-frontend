@@ -1,5 +1,5 @@
 import type { Category } from '@/interfaces/navbar'
-import type { Image, Hero, Carousel } from '@/interfaces/common'
+import type { Image, Hero, Carousel, QuoteForm } from '@/interfaces/common'
 import type { SEO } from '@/interfaces/seo'
 
 export interface AccordionItem {
@@ -23,10 +23,6 @@ export interface Product {
 export interface ProductsPage {
   hero: Hero
   seo: SEO
-}
-export interface QuoteForm {
-  title: string
-  buttonLabel: string
 }
 
 export interface ProductLocales {

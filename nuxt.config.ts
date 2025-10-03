@@ -56,4 +56,10 @@ export default defineNuxtConfig({
     version: 'v5',
     cookie: {},
   },
+  app: {
+    pageTransition: {
+      name: 'translate-page',
+      mode: 'out-in',
+    },
+  },
 })
