@@ -17,6 +17,6 @@ const closeButton = ref(true)
       :rich-colors="richColors"
       :expand="expand"
     />
-    <NuxtPage :key="$route.fullPath" />
+    <NuxtPage />
   </NuxtLayout>
 </template>
