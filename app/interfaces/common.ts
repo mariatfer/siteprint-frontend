@@ -48,7 +48,7 @@ export interface Carousel {
 
 export interface Icon {
   name: string
-  alt?: string
+  ariaLabel?: string
 }
 
 export interface SmallCard {
@@ -65,4 +65,13 @@ export interface Hero {
 
 export type Slug = {
   slug: string
+}
+export interface TextVariant {
+  id?: number
+  highlight: string
+  normal: string
+}
+export interface QuoteForm {
+  title: string
+  buttonLabel: string
 }

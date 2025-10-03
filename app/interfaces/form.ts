@@ -1,3 +1,5 @@
+import type { TextVariant } from '@/interfaces/common'
+
 export interface FormErrors {
   [key: string]: string
 }
@@ -40,13 +42,8 @@ export interface FileUploadErrors {
   unsupportedFormat: string
 }
 
-export interface SelectFiles {
-  highlight: string
-  normal: string
-}
-
 export interface FileUpload {
-  selectFiles: SelectFiles
+  selectFiles: TextVariant
   permittedFormats: string
   errors: FileUploadErrors
 }
