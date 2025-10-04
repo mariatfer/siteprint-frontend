@@ -110,6 +110,7 @@ function toggleMenu() {
   width: 100%;
   max-width: 120rem;
   z-index: 1000;
+  @include box-shadow($y: 0.4375rem, $blur: 3rem, $color: #0000005b);
 
   &__principal {
     background-color: var(--c-primary);

@@ -131,7 +131,7 @@ function handleBlur(e: FocusEvent) {
     }
 
     &:hover {
-      @include box-shadow(0, 10px, 20px, -15px, rgba(0, 162, 255, 0.877));
+      @include box-shadow(0, 0.625rem, 1.25rem, -0.9375rem, rgba(0, 162, 255, 0.877));
     }
 
     &:focus {

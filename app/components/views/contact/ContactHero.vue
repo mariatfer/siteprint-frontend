@@ -53,11 +53,13 @@ defineProps<{
   @include flex();
   margin: 0 auto;
   background-color: var(--c-light-graphite);
-  @include box-shadow($y: 10px, $blur: 3rem, $color: #0000005b);
+  max-height: 31rem;
+  @include box-shadow($y: 0.625rem, $blur: 3rem, $color: #0000005b);
 
   @include responsive() {
-    width: 100%;
     @include flex(column);
+    width: 100%;
+    max-height: unset;
   }
 
   &__placeholder {
