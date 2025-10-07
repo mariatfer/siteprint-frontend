@@ -1,12 +1,7 @@
 import type { Category } from '@/interfaces/navbar'
-import type { Image, Hero, Carousel, QuoteForm } from '@/interfaces/common'
+import type { Image, Hero, Carousel, QuoteForm, AccordionItem } from '@/interfaces/common'
 import type { SEO } from '@/interfaces/seo'
 
-export interface AccordionItem {
-  id: number
-  label: string
-  content: string
-}
 export interface Product {
   id: number
   category: Category

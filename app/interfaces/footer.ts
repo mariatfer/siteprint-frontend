@@ -1,21 +1,24 @@
 import type { Icon } from '@/interfaces/common'
 
-interface Link {
+export interface Link {
   id: number
   name: string
-  link: string
+  slug?: string
+  url?: string
   title: string
+  blank?: boolean
   icon?: Icon
 }
 
-interface Category {
+export interface FooterCategory {
   id: number
   name: string
+  type: 'help' | 'social' | 'enterprise'
   links?: Link[]
 }
 
 export interface Footer {
   copyright: string
-  categories: Category[]
-  policies: Category
+  categories: FooterCategory[]
+  policies: FooterCategory
 }
