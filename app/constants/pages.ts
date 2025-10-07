@@ -4,6 +4,7 @@ export const PAGES = [
   'product',
   'policies',
   'policy',
+  'helps',
+  'help',
   'contact',
-  'frequent-questions',
 ] as const

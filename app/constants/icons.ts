@@ -16,4 +16,11 @@ export const ICONS = {
   calendar:
     'streamline:interface-calendar-date-month-thirty-thirty-calendar-date-week-day-month',
   contact: 'streamline:contact-phonebook-2',
+  quote: 'material-symbols:request-quote-outline',
+  question: 'material-symbols:question-mark',
+  legal: 'hugeicons:legal-01',
+  web: 'mdi:web',
+  cookies: 'proicons:cookies',
+  privacy: 'iconoir:privacy-policy',
+  rotate: 'mdi:rotate-3d-variant',
 }
