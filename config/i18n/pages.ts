@@ -10,11 +10,20 @@ export const pages: ModuleOptions['pages'] = {
   'products/[product]/index': {
     es: '/productos/[product]',
   },
+  helps: {
+    es: '/ayudas',
+  },
+  'helps/[help]/index': {
+    es: '/ayudas/[help]',
+  },
+  policies: {
+    es: '/politicas',
+  },
+  'policies/[policy]/index': {
+    es: '/politicas/[policy]',
+  },
   contact: {
     es: '/contacto',
-  },
-  'frequent-questions': {
-    es: '/preguntas-frecuentes',
   },
   'thank-you': {
     es: '/gracias',
