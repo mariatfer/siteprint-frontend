@@ -1,16 +1,17 @@
 <script setup lang="ts">
-const props = withDefaults(
+withDefaults(
   defineProps<{
     id: string | number
     name: string
     label: string
     ariaLabel: string
-    placeholder: string
+    placeholder?: string
     disabled?: boolean
     required?: boolean
     externalError?: string
   }>(),
   {
+    placeholder: '',
     disabled: false,
     required: false,
     externalError: '',
@@ -33,13 +34,9 @@ watch(inputValue, (newValue) => {
 
 const isFocused = ref(false)
 const showPlaceholder = ref(false)
-const localError = ref<string | undefined>()
-
-const displayedError = computed(() => localError.value || props.externalError)
 
 function onInput(e: Event) {
   const value = (e.target as HTMLInputElement).value
-  localError.value = undefined
   emit('update:modelValue', value)
 }
 
@@ -52,7 +49,6 @@ function handleBlur(e: FocusEvent) {
   isFocused.value = false
   showPlaceholder.value = false
   const value = (e.target as HTMLInputElement).value
-  localError.value = validateField(props.name, value)
   emit('blur', value)
 }
 </script>
@@ -68,7 +64,7 @@ function handleBlur(e: FocusEvent) {
       :disabled="disabled"
       :required="required"
       class="field__textarea"
-      :class="{ 'field__textarea--error': displayedError }"
+      :class="{ 'field__textarea--error': externalError }"
       @focus="handleFocus"
       @blur="handleBlur"
       @input="onInput"
@@ -87,7 +83,7 @@ function handleBlur(e: FocusEvent) {
         {{ char }}
       </span>
     </label>
-    <span class="field__error">{{ displayedError }}</span>
+    <span class="field__error">{{ externalError }}</span>
   </div>
 </template>
 

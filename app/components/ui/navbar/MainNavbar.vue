@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { resolveIcons } from '@/composables/useResolveAssets'
 import type { NavbarLocales, CategoriesName, Category } from '@/interfaces/navbar'
 import { getCategories } from '@/services/category'
 const { data: navbarLocales } = await useLocales<NavbarLocales>('navbar')
@@ -61,20 +60,9 @@ function toggleMenu() {
         </NuxtLinkLocale>
       </div>
 
-      <UiNavbarSearchBar v-if="navbarLocales.search" v-bind="navbarLocales.search" />
-
-      <NuxtLinkLocale
-        :href="navbarLocales.login.link"
-        :title="navbarLocales.login.title"
-        class="navbar__login"
-      >
-        <icon
-          :name="resolveIcons(navbarLocales.login.icon.name)"
-          role="img"
-          :aria-label="navbarLocales.login.icon.ariaLabel"
-          class="navbar__login-icon"
-        />
-      </NuxtLinkLocale>
+      <div class="navbar__center">
+        <UiNavbarSearchBar v-if="navbarLocales.search" v-bind="navbarLocales.search" />
+      </div>
     </section>
 
     <UiNavbarCategoriesNavbar
@@ -116,11 +104,19 @@ function toggleMenu() {
     background-color: var(--c-primary);
     max-height: 4.1563rem;
     padding: 0.5625rem var(--s-padding);
-    @include flex($justify: space-between, $gap: 1rem);
+    position: relative;
+    @include flex($justify: flex-start, $gap: 1rem);
 
     @include responsive() {
       padding: 0.75rem var(--s-padding-mobile);
-      @include flex($justify: space-between, $gap: 0.5rem);
+    }
+  }
+
+  &__center {
+    @include flex($justify: center);
+    flex-grow: 1;
+    @include responsive(40rem) {
+      @include flex($justify: flex-end);
     }
   }
 
@@ -166,25 +162,6 @@ function toggleMenu() {
       width: auto;
       height: 2rem;
     }
-  }
-
-  &__login {
-    @include flex(column);
-    color: var(--c-white);
-    font-size: var(--s-font-small);
-    font-weight: bold;
-    transition: var(--t-transition);
-    padding: 0.3rem;
-    border-radius: 50%;
-    &:hover {
-      color: var(--c-secondary);
-      background-color: var(--c-dark-blue);
-    }
-  }
-
-  &__login-icon {
-    width: 1.9rem;
-    height: 1.9rem;
   }
 }
 </style>

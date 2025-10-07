@@ -30,7 +30,6 @@ const linkAttrs = computed(() => {
 })
 
 function handleClick(event: Event) {
-  console.log('🟢 handleClick ejecutado con type:', props.type)
   if (props.type === 'submit') return
 
   if (props.action) {
@@ -65,11 +64,11 @@ function handleClick(event: Event) {
   z-index: 1;
   color: #090909;
   padding: 0.7em 1.7em;
-  cursor: pointer;
   font-size: var(--s-font-p);
   border-radius: 0.5em;
   background: #e8e8e8;
   border: 0.0625rem solid #e8e8e8;
+  text-align: center;
   @include box-shadow(
     $x: 0.375rem,
     $y: 0.375rem,
