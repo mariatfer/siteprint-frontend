@@ -4,35 +4,37 @@
     {
       "id": 1,
       "name": "¿Cómo podemos ayudarte?",
+      "type": "help",
       "links": [
         {
           "id": 1,
-          "name": "¿Cómo solicitar un presupuesto?",
-          "link": "/como-solicitar-un-presupuesto",
-          "title": "Ir a la página de cómo solicitar un presupuesto"
+          "name": "¿Cómo solicitar tu presupuesto?",
+          "slug": "/como-solicitar-tu-presupuesto",
+          "title": "Ver cómo solicitar tu presupuesto"
         },
         {
           "id": 2,
           "name": "Preguntas frecuentes",
-          "link": "/preguntas-frecuentes",
-          "title": "Ir a la página de preguntas frecuentes"
+          "slug": "/preguntas-frecuentes",
+          "title": "Ver preguntas frecuentes"
         }
       ]
     },
     {
       "id": 2,
       "name": "Empresa",
+      "type": "enterprise",
       "links": [
         {
           "id": 1,
           "name": "Sobre nosotros",
-          "link": "/sobre-nosotros",
+          "slug": "/sobre-nosotros",
           "title": "Ir a la página de sobre nosotros"
         },
         {
           "id": 2,
           "name": "Contacto",
-          "link": "/contacto",
+          "slug": "/contacto",
           "title": "Ir a la página de contacto"
         }
       ]
@@ -40,6 +42,7 @@
     {
       "id": 3,
       "name": "Redes sociales",
+      "type": "social",
       "links": [
         {
           "id": 1,
@@ -48,7 +51,8 @@
             "name": "instagram",
             "ariaLabel": "Icono de Instagram"
           },
-          "link": "/",
+          "url": "https://www.instagram.com/",
+          "blank": true,
           "title": "Ir al instagram de AFR Diseño & Impresión"
         },
         {
@@ -58,7 +62,8 @@
             "name": "tiktok",
             "ariaLabel": "Icono de Tiktok"
           },
-          "link": "/",
+          "url": "https://www.tiktok.com/",
+          "blank": true,
           "title": "Ir al tiktok de AFR Diseño & Impresión"
         }
       ]
@@ -66,6 +71,32 @@
   ],
   "policies": {
     "id": 1,
-    "name": "Area legal"
+    "name": "Area legal",
+    "links": [
+      {
+        "id": 1,
+        "name": "Aviso Legal",
+        "title": "Ver aviso legal",
+        "slug": "/aviso-legal"
+      },
+      {
+        "id": 2,
+        "name": "Condiciones de Uso",
+        "title": "Ver condiciones de uso",
+        "slug": "/condiciones-de-uso"
+      },
+      {
+        "id": 3,
+        "name": "Política de Cookies",
+        "title": "Ver política de cookies",
+        "slug": "/politica-de-cookies"
+      },
+      {
+        "id": 4,
+        "name": "Política de Privacidad",
+        "title": "Ver política de privacidad",
+        "slug": "/politica-de-privacidad"
+      }
+    ]
   }
 }
