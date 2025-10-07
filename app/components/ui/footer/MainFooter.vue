@@ -1,27 +1,35 @@
 <script setup lang="ts">
-import type { Footer } from '@/interfaces/footer'
-import type { Policy } from '@/interfaces/policies'
-import { getPolicies } from '@/services/policies'
+import type { Footer, Link } from '@/interfaces/footer'
 const { data: footerLocales } = await useLocales<Footer>('footer')
 const { isResponsiveResolution } = useWindowsResize()
 
-const policies = ref<Policy[]>([])
-policies.value = await getPolicies()
+const { policyUrl, helpUrl } = useAppUrls()
+
+const resolveLink = (link: Link, type: string): string => {
+  if (type === 'help') return helpUrl(link.slug || '')
+  if (type === 'social') return link.url || '#'
+  return link.slug || '#'
+}
 </script>
 
 <template>
   <footer v-if="footerLocales" class="footer">
-    <ul class="footer__categories">
-      <li
+    <nav class="footer__categories">
+      <section
         v-for="category in footerLocales.categories"
         :key="category.id"
-        class="footer--width"
+        class="footer__category"
       >
         <h3 class="footer__category-name">{{ category.name }}</h3>
-        <ul>
+        <ul v-if="category.links?.length">
           <li v-for="link in category.links" :key="link.id" class="footer__item">
-            <NuxtLinkLocale :to="link.link" :title="link.title" class="footer__link">
-              <icon
+            <NuxtLinkLocale
+              :to="resolveLink(link, category.type)"
+              :title="link.title"
+              :target="link.blank ? '_blank' : undefined"
+              class="footer__link"
+            >
+              <Icon
                 v-if="link.icon"
                 :name="resolveIcons(link.icon.name)"
                 role="img"
@@ -32,45 +40,57 @@ policies.value = await getPolicies()
             </NuxtLinkLocale>
           </li>
         </ul>
-      </li>
-    </ul>
-    <ul class="footer__policies">
+      </section>
+    </nav>
+    <nav class="footer__policies">
       <h3 v-if="isResponsiveResolution" class="footer__category-name">
         {{ footerLocales.policies.name }}
       </h3>
-      <template v-for="(policy, index) in policies" :key="policy.id">
-        <li :class="isResponsiveResolution ? 'footer__item' : 'footer__policy'">
-          <NuxtLinkLocale
-            :to="`/${policy.slug}`"
-            :title="policy.title"
-            class="footer__link"
-            >{{ policy.name }}</NuxtLinkLocale
-          >
-        </li>
-        <li
-          v-if="index < policies.length - 1 && !isResponsiveResolution"
-          class="point"
-        ></li>
-      </template>
-    </ul>
+      <ul class="footer__list">
+        <template
+          v-for="(policy, index) in footerLocales.policies.links"
+          :key="policy.id"
+        >
+          <li :class="isResponsiveResolution ? 'footer__item' : 'footer__policy'">
+            <NuxtLinkLocale
+              :to="policyUrl(policy.slug)"
+              :title="policy.title"
+              class="footer__link"
+              >{{ policy.name }}</NuxtLinkLocale
+            >
+          </li>
+          <li
+            v-if="
+              footerLocales.policies.links &&
+              index < footerLocales.policies.links.length - 1 &&
+              !isResponsiveResolution
+            "
+            class="point"
+            aria-hidden="true"
+          ></li>
+        </template>
+      </ul>
+    </nav>
     <h3 class="footer__copyright">{{ footerLocales.copyright }}</h3>
   </footer>
 </template>
 
 <style lang="scss" scoped>
 .footer {
-  @include flex(column);
+  @include flex(column, $gap: 3rem);
   width: 100%;
   height: auto;
   padding: 2.5rem 0;
   background-color: var(--c-primary);
   color: var(--c-white);
   letter-spacing: 0.0313rem;
-
+  @include responsive() {
+    @include flex(column, $gap: 1rem);
+  }
   &__categories {
     width: 70%;
     max-width: 62.5rem;
-    @include flex($justify: space-around);
+    @include flex($justify: space-around, $align: flex-start);
     @include responsive() {
       width: 100%;
       padding: 0 var(--s-padding-mobile);
@@ -78,7 +98,7 @@ policies.value = await getPolicies()
     }
   }
 
-  &--width {
+  &__category {
     @include responsive() {
       width: 100%;
     }
@@ -106,13 +126,17 @@ policies.value = await getPolicies()
   }
 
   &__policies {
-    @include flex($gap: 0.8rem);
-    margin: 2rem 0;
+    @include responsive() {
+      padding: 0 var(--s-padding-mobile);
+      width: 100%;
+    }
+  }
+
+  &__list {
+    @include flex($gap: 1rem);
     @include responsive() {
       @include flex(column, flex-start, flex-start);
-      padding: 0 var(--s-padding-mobile);
-      margin: 1rem 0 2rem 0;
-      width: 100%;
+      margin: 0 0 1rem 0;
     }
   }
 
@@ -134,9 +158,6 @@ policies.value = await getPolicies()
     font-weight: 500;
     text-align: center;
     color: var(--c-light-graphite);
-    @include responsive() {
-      margin: 2rem 0 0 0;
-    }
   }
 }
 .point {

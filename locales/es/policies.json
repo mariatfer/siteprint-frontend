@@ -1,0 +1,71 @@
+{
+  "title": "Área Legal",
+  "intro": "Aquí encontrarás toda la información legal relacionada con el uso de nuestros servicios. Consulta nuestras políticas y condiciones para navegar con confianza.",
+  "cards": [
+    {
+      "id": 1,
+      "name": "Aviso Legal",
+      "slug": "/aviso-legal",
+      "title": "Ver aviso legal",
+      "ariaLabel": "Ver detalles del aviso legal",
+      "description": "Información sobre la titularidad del sitio, derechos de propiedad intelectual y condiciones generales de acceso.",
+      "icon": {
+        "name": "legal"
+      },
+      "buttonLabel": "Ver más",
+      "hintText": "Toca para más info"
+    },
+    {
+      "id": 2,
+      "name": "Condiciones de Uso",
+      "slug": "/preguntas-frecuentes",
+      "title": "Ver condiciones de uso",
+      "ariaLabel": "Ver detalles de las condiciones de uso",
+      "description": "Normas que regulan el uso de la web, responsabilidades del usuario y limitaciones de uso.",
+      "icon": {
+        "name": "web"
+      },
+      "buttonLabel": "Ver más",
+      "hintText": "Toca para más info"
+    },
+    {
+      "id": 3,
+      "name": "Política de Cookies",
+      "slug": "/politica-de-cookies",
+      "title": "Ver política de cookies",
+      "ariaLabel": "Ver detalles de la política de cookies",
+      "description": "Explicación sobre el uso de cookies, tipos utilizados y cómo gestionarlas desde tu navegador.",
+      "icon": {
+        "name": "cookies"
+      },
+      "buttonLabel": "Ver más",
+      "hintText": "Toca para más info"
+    },
+    {
+      "id": 4,
+      "name": "Política de Privacidad",
+      "slug": "/politica-de-privacidad",
+      "title": "Ver política de privacidad",
+      "ariaLabel": "Ver detalles de la política de privacidad",
+      "description": "Detalles sobre cómo recopilamos, usamos y protegemos tus datos personales.",
+      "icon": {
+        "name": "privacy"
+      },
+      "buttonLabel": "Ver más",
+      "hintText": "Toca para más info"
+    }
+  ],
+  "seo": {
+    "metaTitle": "Políticas y Condiciones | AFR Diseño & Impresión",
+    "metaDescription": "Consulta nuestras políticas de privacidad, cookies, devoluciones y uso. Transparencia y compromiso con nuestros clientes.",
+    "noIndex": false,
+    "noFollow": false,
+    "ogTitle": "Políticas de AFR Diseño & Impresión",
+    "ogDescription": "Conoce nuestras políticas y condiciones para garantizar una experiencia de compra segura y confiable.",
+    "author": "AFR Diseño & Impresión",
+    "ogImage": {
+      "url": "/original-logo.png",
+      "alternativeText": "Logo de AFR Diseño & Impresión"
+    }
+  }
+}

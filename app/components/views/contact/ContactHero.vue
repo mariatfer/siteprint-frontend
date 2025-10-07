@@ -42,7 +42,7 @@ defineProps<{
             </li>
           </ul>
         </div>
-        <UiTheLine v-if="index !== heroCards.length - 1" margin-top="2rem" />
+        <UiTheLine v-if="index !== heroCards.length - 1" margin-top="1.5rem" />
       </div>
     </article>
   </section>
@@ -53,11 +53,13 @@ defineProps<{
   @include flex();
   margin: 0 auto;
   background-color: var(--c-light-graphite);
-  @include box-shadow($y: 10px, $blur: 3rem, $color: #0000005b);
+  max-height: 31rem;
+  @include box-shadow($y: 0.625rem, $blur: 3rem, $color: #0000005b);
 
   @include responsive() {
-    width: 100%;
     @include flex(column);
+    width: 100%;
+    max-height: unset;
   }
 
   &__placeholder {
@@ -81,14 +83,15 @@ defineProps<{
   }
 
   &__info {
-    @include flex(column, $gap: 2rem);
+    @include flex(column, $gap: 1.5rem);
     flex: 1;
     max-width: 50%;
     order: 1;
 
     @include responsive() {
-      padding: var(--s-padding-mobile) var(--s-padding-mobile);
+      padding: var(--s-padding-mobile);
       max-width: unset;
+      width: 100%;
     }
   }
 
@@ -102,12 +105,9 @@ defineProps<{
   }
 
   &__title {
-    font-size: var(--s-font-h4);
-    font-weight: 500;
+    font-size: var(--s-font-p);
+    font-weight: 600;
     margin: 0 0 1rem 0;
-    @include responsive() {
-      font-size: var(--s-font-h4-mobile);
-    }
   }
 
   &__details {
@@ -116,7 +116,8 @@ defineProps<{
 
   &__item,
   &__list {
-    @include responsive(25rem) {
+    font-size: var(--s-font-cta);
+    @include responsive(45rem) {
       @include flex(column, flex-start, flex-start, $gap: 0.1rem);
     }
   }

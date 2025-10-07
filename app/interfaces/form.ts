@@ -1,14 +1,13 @@
 import type { TextVariant } from '@/interfaces/common'
-
-export interface FormErrors {
-  [key: string]: string
-}
+import type { BooleanFieldNames, FormType, ToastMessages } from '@/types/form'
 
 export interface FormData {
   name: string
   email: string
   subject: string
   message: string
+  privacyPolicy: boolean
+  newsletter?: boolean
 }
 
 export interface FormField {
@@ -17,25 +16,26 @@ export interface FormField {
   label: string
   ariaLabel: string
   type?: string
-  placeholder: string
+  placeholder?: string
   autoComplete?: string
   disabled?: boolean
   required?: boolean
 }
-
-export type FormValues = FormData & { files: File[] }
-
-export type FormType = 'contact' | 'quote'
+export interface FormCheckbox {
+  id: number
+  name: BooleanFieldNames
+  label: string
+  ariaLabel: string
+  disabled?: boolean
+  required?: boolean
+  showIn?: FormType[]
+}
 
 export interface Toast {
   title: string
   description?: string
   buttonLabel?: string
 }
-
-export type ToastType = 'success' | 'loading' | 'error' | 'validation'
-
-export type ToastMessages = Record<ToastType, Toast>
 
 export interface FileUploadErrors {
   sizeExceeded: string
@@ -48,9 +48,34 @@ export interface FileUpload {
   errors: FileUploadErrors
 }
 
+export interface ValidationErrors {
+  name: {
+    minLength: string
+    onlyLetters: string
+  }
+  email: {
+    invalid: string
+  }
+  subject: {
+    minLength: string
+  }
+  message: {
+    minLength: string
+  }
+  privacyPolicy: {
+    required: string
+  }
+  general: {
+    required: string
+    invalidType: string
+  }
+}
+
 export interface FormLocales {
   toastMessages: ToastMessages
   inputFields: FormField[]
   textArea: FormField
   fileUpload: FileUpload
+  checkBox: FormCheckbox[]
+  validationErrors: ValidationErrors
 }

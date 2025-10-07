@@ -24,12 +24,13 @@ defineProps<Search>()
 .search {
   position: relative;
   @include flex;
-  max-width: 22rem;
-  width: 50%;
+  max-width: 25rem;
+  width: 65%;
   height: 2.5rem;
 
-  @include responsive(37.5rem) {
-    max-width: 13rem;
+  @include responsive(40rem) {
+    max-width: 18.875rem;
+    width: 90%;
   }
 
   &__icon {

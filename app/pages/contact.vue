@@ -6,6 +6,14 @@ const { data: contactLocales } = await useLocales<ContactLocales>('contact')
 const contact = ref<Contact>()
 contact.value = await getContact()
 
+const { contrastColor, analyzeImageColor } = useImageColor()
+
+onMounted(async () => {
+  if (contact.value) {
+    const imgUrl = `http://localhost:1337${contact.value.contactImage.url}`
+    await analyzeImageColor(imgUrl, 100)
+  }
+})
 if (contact.value) {
   useSeoMeta({
     title: contact.value.seo.metaTitle,
@@ -22,6 +30,7 @@ if (contact.value) {
 
 <template>
   <div class="contact">
+    <UiBreadCrumbs :color="contrastColor" :position-absolute="true" :no-padding="true" />
     <UiSEOTitle v-if="contact?.seo" :meta-title="contact.seo.metaTitle" />
     <ViewsContactHero
       v-if="contact?.contactImage"

@@ -1,4 +1,4 @@
-export const MAX_SIZE_MB = 5
+export const MAX_SIZE_MB = 18
 export const ALLOWED_TYPES = [
   'application/pdf',
   'image/png',

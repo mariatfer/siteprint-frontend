@@ -51,12 +51,24 @@ export interface Icon {
   ariaLabel?: string
 }
 
-export interface SmallCard {
+export interface BaseCard {
   id: number
-  cardImage: Media
+  name: string
+  slug: string
   title: string
+  description: string
 }
 
+export interface SmallCard extends Pick<BaseCard, 'id' | 'title'> {
+  cardImage: Media
+}
+
+export interface FlipCard extends BaseCard {
+  ariaLabel: string
+  icon: Icon
+  buttonLabel: string
+  hintText: string
+}
 export interface Hero {
   heroImage: Media
   title: string
@@ -74,4 +86,15 @@ export interface TextVariant {
 export interface QuoteForm {
   title: string
   buttonLabel: string
+}
+
+export interface Paragraph {
+  id: number
+  text: string
+}
+
+export interface AccordionItem {
+  id: number
+  label: string
+  content: string
 }

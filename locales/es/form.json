@@ -24,6 +24,7 @@
       "label": "Nombre",
       "ariaLabel": "Nombre",
       "type": "text",
+      "inputMode": "text",
       "placeholder": "Ej: Juan Pérez González",
       "autoComplete": "name",
       "disabled": false,
@@ -35,6 +36,7 @@
       "label": "Correo electrónico",
       "ariaLabel": "Correo electrónico",
       "type": "email",
+      "inputMode": "email",
       "placeholder": "Ej: ejemplo@correo.com",
       "autoComplete": "email",
       "disabled": false,
@@ -46,7 +48,8 @@
       "label": "Asunto",
       "ariaLabel": "Asunto",
       "type": "text",
-      "placeholder": "Ej: Solicitud de ...",
+      "inputMode": "text",
+      "placeholder": "¿Sobre qué quieres hablar?",
       "autoComplete": "off",
       "disabled": false,
       "required": true
@@ -66,10 +69,50 @@
       "highlight": "Haz clic",
       "normal": "o arrastra tus archivos aquí"
     },
-    "permittedFormats": "Formatos soportados: PDF, PNG, JPG (máx. 5MB)",
+    "permittedFormats": "Formatos soportados: PDF, PNG, JPG",
     "errors": {
       "sizeExceeded": "excede el límite de",
       "unsupportedFormat": "Formato no permitido"
+    }
+  },
+  "checkBox": [
+    {
+      "id": 5,
+      "name": "privacyPolicy",
+      "label": "He leído y acepto la Política de Privacidad",
+      "ariaLabel": "He leído y acepto la Política de Privacidad",
+      "disabled": false,
+      "showIn": ["contact", "quote"]
+    },
+    {
+      "id": 6,
+      "name": "newsletter",
+      "label": "Quiero recibir novedades y noticias por correo",
+      "ariaLabel": "Quiero recibir novedades y noticias por correo electrónico",
+      "disabled": false,
+      "showIn": ["quote"]
+    }
+  ],
+  "validationErrors": {
+    "name": {
+      "minLength": "El nombre debe tener al menos 2 caracteres.",
+      "onlyLetters": "El nombre solo puede contener letras."
+    },
+    "email": {
+      "invalid": "El correo electrónico no es válido."
+    },
+    "subject": {
+      "minLength": "El asunto debe tener al menos 2 caracteres."
+    },
+    "message": {
+      "minLength": "El mensaje debe tener al menos 10 caracteres."
+    },
+    "privacyPolicy": {
+      "required": "Debes aceptar la política de privacidad."
+    },
+    "general": {
+      "required": "Este campo es obligatorio.",
+      "invalidType": "El tipo de dato no es válido."
     }
   }
 }

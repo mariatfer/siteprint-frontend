@@ -1,0 +1,45 @@
+{
+  "title": "¿Cómo podemos ayudarte?",
+  "intro": "Explora nuestras guías rápidas, preguntas frecuentes y consejos para aprovechar al máximo nuestros servicios.",
+  "cards": [
+    {
+      "id": 1,
+      "name": "¿Cómo solicitar tu presupuesto?",
+      "slug": "/como-solicitar-tu-presupuesto",
+      "title": "Ver cómo solicitar tu presupuesto",
+      "ariaLabel": "Ver detalles de cómo solicitar tu presupuesto",
+      "description": "Te explicamos paso a paso cómo pedir tu presupuesto personalizado, qué datos incluir y cómo recibir respuesta rápida.",
+      "icon": {
+        "name": "quote"
+      },
+      "buttonLabel": "Ver más",
+      "hintText": "Toca para más info"
+    },
+    {
+      "id": 2,
+      "name": "Preguntas frecuentes",
+      "slug": "/preguntas-frecuentes",
+      "title": "Ver preguntas frecuentes",
+      "ariaLabel": "Ver detalles de preguntas frecuentes",
+      "description": "Respuestas claras a las dudas más comunes sobre nuestros servicios, tiempos de entrega y más.",
+      "icon": {
+        "name": "question"
+      },
+      "buttonLabel": "Ver más",
+      "hintText": "Toca para más info"
+    }
+  ],
+  "seo": {
+    "metaTitle": "Centro de Ayuda | AFR Diseño & Impresión",
+    "metaDescription": "Accede a nuestras guías y preguntas frecuentes. En AFR Diseño & Impresión te ayudamos con tus pedidos y personalizaciones.",
+    "noIndex": false,
+    "noFollow": false,
+    "ogTitle": "Centro de Ayuda | AFR Diseño & Impresión",
+    "ogDescription": "Encuentra toda la información que necesitas sobre envíos, pedidos y más. Atención personalizada y cercana.",
+    "author": "AFR Diseño & Impresión",
+    "ogImage": {
+      "url": "/original-logo.png",
+      "alternativeText": "Logo de AFR Diseño & Impresión"
+    }
+  }
+}

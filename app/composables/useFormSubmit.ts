@@ -1,4 +1,4 @@
-import type { FormValues, FormType } from '@/interfaces/form'
+import type { FormType, FormValues } from '@/types/form'
 
 export function useFormSubmit() {
   const CONTACT_API_URL = '/api/send-contact'

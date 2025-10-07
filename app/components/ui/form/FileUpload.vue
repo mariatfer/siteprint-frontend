@@ -135,7 +135,7 @@ const onChange = (e: Event) => {
   border: 0.0938rem solid var(--c-dark-brown);
   border-radius: var(--s-border-radius);
   padding: 2rem;
-  margin: 1rem 0 0.5rem 0;
+  margin: 1rem 0;
   background: #fffdfd;
   transition: var(--t-transition);
   text-align: center;
@@ -162,8 +162,7 @@ const onChange = (e: Event) => {
   }
 
   &__label {
-    @include flex(column);
-    gap: 0.75rem;
+    @include flex(column, $gap: 0.75rem);
     cursor: pointer;
   }
 
@@ -200,8 +199,7 @@ const onChange = (e: Event) => {
   }
 
   &__pill {
-    @include flex($justify: space-between);
-    gap: 0.5rem;
+    @include flex($justify: space-between, $gap: 0.5rem);
     background: #f0f4ff;
     color: var(--c-dark-brown);
     padding: 0.2rem 0.75rem;

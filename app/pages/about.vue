@@ -49,32 +49,7 @@ if (about.value) {
       padding: 0 var(--s-padding-mobile);
       margin: var(--s-margin-mobile) 0;
     }
-
-    &:deep(h2) {
-      margin: 3rem 0 2rem 0;
-      font-weight: 600;
-    }
-
-    &:deep(h3) {
-      margin: 1.5rem 0;
-    }
-
-    &:deep(p) {
-      margin: 1rem 0;
-    }
-
-    &:deep(ul) {
-      padding: 0 0 0 2rem;
-    }
-
-    &:deep(li) {
-      list-style: lower-latin;
-    }
-
-    &:deep(a) {
-      color: var(--c-primary);
-      font-weight: 600;
-    }
+    @include markdown();
   }
 }
 </style>

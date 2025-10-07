@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import type { QuoteForm } from '@/interfaces/common'
-import { validateFormData, isFormValid } from '@/utils/validator'
-import type {
-  FormData,
-  FormErrors,
-  FormValues,
-  FormLocales,
-  FormType,
-} from '@/interfaces/form'
+import type { FormLocales, ValidationErrors } from '@/interfaces/form'
+import type { FormType, FormValues } from '@/types/form'
 import { toast } from 'vue-sonner'
 
 const props = defineProps<{
@@ -17,6 +11,7 @@ const props = defineProps<{
 }>()
 
 const { data: formLocales } = await useLocales<FormLocales>('form')
+const validationErrors = shallowRef<ValidationErrors>(formLocales.validationErrors)
 
 const formValues = reactive<FormValues>({
   name: '',
@@ -24,9 +19,12 @@ const formValues = reactive<FormValues>({
   subject: '',
   message: '',
   files: [],
+  privacyPolicy: false,
+  newsletter: false,
 })
 
-const formErrors = ref<FormErrors>({})
+const { formErrors, validateForm, validateField, clearError, clearAllErrors } =
+  useFormValidator(validationErrors)
 
 function handleFilesFromChild(files: File[]) {
   formValues.files = files
@@ -44,22 +42,21 @@ function resetForm() {
     subject: '',
     message: '',
     files: [],
+    privacyPolicy: false,
+    newsletter: false,
   })
-  formErrors.value = {}
+  clearAllErrors()
   formKey.value++
 }
 
-const onSubmit = async () => {
-  const formDataToValidate: FormData = {
-    name: formValues.name,
-    email: formValues.email,
-    subject: formValues.subject,
-    message: formValues.message,
-  }
+const visibleCheckboxes = computed(() => {
+  return formLocales.checkBox.filter((checkbox) =>
+    checkbox.showIn?.includes(props.formType),
+  )
+})
 
-  const errors = validateFormData(formDataToValidate)
-  formErrors.value = errors
-  if (!isFormValid(errors)) {
+const onSubmit = async () => {
+  if (!validateForm(formValues)) {
     toast.error(toastMessages.validation.title, {
       description: toastMessages.validation.description,
     })
@@ -86,10 +83,22 @@ const onSubmit = async () => {
     })
   }
 }
+
+function handleBlur(field: keyof FormValues) {
+  if (field === 'files') return
+  validateField(field, formValues[field])
+}
 </script>
 
 <template>
-  <form v-if="formLocales" :key="formKey" class="quote-form" autocomplete="on">
+  <form
+    v-if="formLocales"
+    :key="formKey"
+    class="quote-form"
+    autocomplete="on"
+    novalidate
+    @submit.prevent="onSubmit"
+  >
     <UiTheTitle v-if="locales.title">{{ locales.title }}</UiTheTitle>
     <div class="line"></div>
     <template v-if="formLocales.inputFields">
@@ -99,7 +108,8 @@ const onSubmit = async () => {
         v-bind="field"
         v-model="formValues[field.name]"
         :external-error="formErrors[field.name]"
-        @update:model-value="() => delete formErrors?.[field.name]"
+        @blur="() => handleBlur(field.name)"
+        @update:model-value="() => clearError(field.name)"
       />
     </template>
     <UiFormTextArea
@@ -107,14 +117,23 @@ const onSubmit = async () => {
       v-bind="formLocales.textArea"
       v-model="formValues[formLocales.textArea.name]"
       :external-error="formErrors[formLocales.textArea.name]"
-      @update:model-value="() => delete formErrors?.[formLocales.textArea.name]"
+      @blur="() => handleBlur(formLocales.textArea.name)"
+      @update:model-value="() => clearError(formLocales.textArea.name)"
     />
     <UiFormFileUpload
       v-if="formLocales.fileUpload"
       v-bind="formLocales.fileUpload"
       @files-selected="handleFilesFromChild"
     />
-    <UiTheButton v-if="locales.buttonLabel" :disabled="isSending" :action="onSubmit">
+    <UiFormCheckBox
+      v-for="checkbox in visibleCheckboxes"
+      :key="checkbox.id"
+      v-bind="checkbox"
+      v-model="formValues[checkbox.name]"
+      :external-error="formErrors[checkbox.name]"
+      @update:model-value="() => clearError(checkbox.name)"
+    />
+    <UiTheButton v-if="locales.buttonLabel" :disabled="isSending" type="submit">
       {{ locales.buttonLabel }}
     </UiTheButton>
   </form>
