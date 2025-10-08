@@ -11,7 +11,7 @@ const { parseMarkdown } = useSanitizedMarkdown()
 const htmlContent = ref('')
 onMounted(async () => {
   if (about.value) {
-    const imgUrl = `http://localhost:1337${about.value.hero.heroImage.url}`
+    const imgUrl = about.value.hero.heroImage.url
     await analyzeImageColor(imgUrl, 100)
     htmlContent.value = await parseMarkdown(about.value.content)
   }
