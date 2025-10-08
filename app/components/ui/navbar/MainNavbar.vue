@@ -32,6 +32,9 @@ const showMenu = ref(false)
 function toggleMenu() {
   showMenu.value = !showMenu.value
 }
+
+const search = ref('')
+const { searchedProducts } = useSearchedProducts(search, categories)
 </script>
 
 <template>
@@ -53,15 +56,20 @@ function toggleMenu() {
           />
           <div class="navbar__title" role="heading">
             {{ navbarLocales.logo.enterpriseTitle.text }}
-            <span class="navbar__span">{{
-              navbarLocales.logo.enterpriseTitle.span
-            }}</span>
+            <span class="navbar__span">
+              {{ navbarLocales.logo.enterpriseTitle.span }}</span
+            >
           </div>
         </NuxtLinkLocale>
       </div>
 
       <div class="navbar__center">
-        <UiNavbarSearchBar v-if="navbarLocales.search" v-bind="navbarLocales.search" />
+        <UiNavbarSearchBar
+          v-if="navbarLocales.search"
+          v-model:search="search"
+          :locales="navbarLocales.search"
+          :products="searchedProducts"
+        />
       </div>
     </section>
 
@@ -81,6 +89,7 @@ function toggleMenu() {
         :header-text="headerText"
       />
     </Transition>
+
     <UiNavbarAsideNavbar
       v-model:show-menu="showMenu"
       :aside-locales="navbarLocales.aside"
@@ -122,7 +131,7 @@ function toggleMenu() {
 
   &__left-side {
     @include flex($justify: space-between, $gap: 2rem);
-    @include responsive(25rem) {
+    @include responsive(40rem) {
       @include flex($justify: space-between, $gap: 1em);
     }
   }

@@ -28,7 +28,7 @@ const carouselData = props.carousel?.map((item) =>
   <div class="carousel-wrapper">
     <Swiper
       :modules="modules"
-      :loop="true"
+      :loop="carousel.length > 1 ? true : false"
       :keyboard="true"
       :pagination="{ dynamicBullets: true, clickable: true }"
       :grab-cursor="true"
