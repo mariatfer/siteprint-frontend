@@ -111,7 +111,8 @@ const { searchedProducts } = useSearchedProducts(search, categories)
 
   &__principal {
     background-color: var(--c-primary);
-    max-height: 4.1563rem;
+    height: 4rem;
+    max-height: 4rem;
     padding: 0.5625rem var(--s-padding);
     position: relative;
     @include flex($justify: flex-start, $gap: 1rem);
