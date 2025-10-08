@@ -14,6 +14,7 @@ export interface Search {
   placeholder: string
   ariaLabel: string
   icon: Icon
+  emptySearch: string
 }
 
 export interface Login {
