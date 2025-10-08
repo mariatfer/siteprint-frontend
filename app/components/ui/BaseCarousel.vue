@@ -50,7 +50,6 @@ const carouselData = props.carousel?.map((item) =>
           :alt="carouselItem.alternativeText"
           :title="carouselItem.alternativeText"
           :placeholder="carouselItem.placeholder"
-          class="carousel__image"
           fetchpriority="high"
           preload
           :sizes="'100vw'"
