@@ -20,9 +20,7 @@ export default defineNuxtConfig({
     resendApiKey: process.env.RESEND_API_KEY,
 
     public: {
-      strapi: {
-        url: process.env.STRAPI_URL || 'http://localhost:1337',
-      },
+      strapiUrl: process.env.NUXT_STRAPI_URL || 'http://localhost:1337',
     },
   },
   ssr: false,
@@ -51,7 +49,7 @@ export default defineNuxtConfig({
     },
   },
   strapi: {
-    url: process.env.STRAPI_URL,
+    url: process.env.NUXT_STRAPI_URL || 'http://localhost:1337',
     prefix: '/api',
     version: 'v5',
     cookie: {},
