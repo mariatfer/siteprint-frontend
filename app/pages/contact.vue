@@ -10,7 +10,7 @@ const { contrastColor, analyzeImageColor } = useImageColor()
 
 onMounted(async () => {
   if (contact.value) {
-    const imgUrl = `http://localhost:1337${contact.value.contactImage.url}`
+    const imgUrl = contact.value.contactImage.url
     await analyzeImageColor(imgUrl, 100)
   }
 })

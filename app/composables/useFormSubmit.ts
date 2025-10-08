@@ -6,7 +6,8 @@ export function useFormSubmit() {
   const isSending = ref(false)
   const error = ref<string | null>(null)
   const success = ref(false)
-  const STRAPI_URL = import.meta.env.STRAPI_URL || 'http://localhost:1337'
+  const config = useRuntimeConfig()
+  const STRAPI_URL = config.public.strapiUrl
 
   const sendForm = async (
     formValues: FormValues,

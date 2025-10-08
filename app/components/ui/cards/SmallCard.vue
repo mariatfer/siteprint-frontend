@@ -8,7 +8,7 @@ defineProps<SmallCard>()
   <article class="card">
     <NuxtImg
       v-if="cardImage"
-      :src="`http://localhost:1337${cardImage.url}`"
+      :src="cardImage.url"
       :alt="cardImage.alternativeText"
       :title="cardImage.alternativeText"
       placeholder="/original-logo.svg"

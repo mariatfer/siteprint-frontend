@@ -18,7 +18,7 @@ const htmlContent = ref('')
 
 onMounted(async () => {
   if (policyData.value) {
-    const imgUrl = `http://localhost:1337${policyData.value.hero.heroImage.url}`
+    const imgUrl = policyData.value.hero.heroImage.url
     await analyzeImageColor(imgUrl, 100)
     htmlContent.value = await parseMarkdown(policyData.value.content)
   }

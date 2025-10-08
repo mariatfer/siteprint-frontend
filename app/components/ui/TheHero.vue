@@ -14,7 +14,7 @@ defineProps<{
     :class="{ 'hero--with-padding': padding }"
   >
     <NuxtImg
-      :src="`http://localhost:1337${hero.heroImage.url}`"
+      :src="hero.heroImage.url"
       :alt="hero.heroImage.alternativeText"
       :title="hero.heroImage.alternativeText"
       fetchpriority="high"

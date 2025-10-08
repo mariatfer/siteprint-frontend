@@ -13,7 +13,7 @@ const { contrastColor, analyzeImageColor } = useImageColor()
 
 onMounted(async () => {
   if (productData.value) {
-    const imgUrl = `http://localhost:1337${productData.value.hero.heroImage.url}`
+    const imgUrl = productData.value.hero.heroImage.url
     await analyzeImageColor(imgUrl, 100)
   }
 })
