@@ -54,7 +54,7 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
       >
         <NuxtImg
           v-if="product.productImage"
-          :src="`http://localhost:1337${product.productImage.url}`"
+          :src="product.productImage.url"
           :alt="product.productImage.alternativeText"
           :title="product.productImage.alternativeText"
           :placeholder="product.productImage.placeholder"

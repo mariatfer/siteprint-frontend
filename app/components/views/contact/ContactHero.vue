@@ -12,7 +12,7 @@ defineProps<{
   <section class="contact-hero">
     <NuxtImg
       v-if="contactImage"
-      :src="`http://localhost:1337${contactImage.url}`"
+      :src="contactImage.url"
       :alt="contactImage.alternativeText"
       :title="contactImage.alternativeText"
       placeholder="/original-logo.svg"

@@ -46,7 +46,7 @@ const carouselData = props.carousel?.map((item) =>
       >
         <NuxtImg
           v-if="carouselItem.mime?.includes('image')"
-          :src="`http://localhost:1337${carouselItem.url}`"
+          :src="carouselItem.url"
           :alt="carouselItem.alternativeText"
           :title="carouselItem.alternativeText"
           :placeholder="carouselItem.placeholder"
@@ -59,7 +59,7 @@ const carouselData = props.carousel?.map((item) =>
         />
         <video
           v-else
-          :src="`http://localhost:1337${carouselItem.url}`"
+          :src="carouselItem.url"
           :poster="carouselItem.poster"
           :controls="carouselItem.controls"
           :autoplay="carouselItem.autoPlay"
