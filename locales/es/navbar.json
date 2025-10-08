@@ -18,7 +18,12 @@
       "name": "search",
       "ariaLabel": "Icono de búsqueda"
     },
-    "emptySearch": "No se han encontrado resultados para tu búsqueda."
+    "emptySearch": "No se han encontrado resultados para tu búsqueda.",
+    "seeMore": {
+      "id": 1,
+      "name": "Ver más",
+      "title": "Ir a la página de productos"
+    }
   },
   "login": {
     "text": "Iniciar sesión",

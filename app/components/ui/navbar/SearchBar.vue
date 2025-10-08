@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ProductLite, Search } from '@/interfaces/navbar'
+import { ICONS } from '@/constants/icons'
 
 defineProps<{
   locales: Search
@@ -35,8 +36,8 @@ const handleInput = (event: Event) => {
   emit('update:search', value || null)
   isDropdownActive.value = true
 }
-
-const { productUrl } = useAppUrls()
+const MAX_PRODUCTS = 5
+const { productUrl, base } = useAppUrls()
 </script>
 
 <template>
@@ -68,7 +69,7 @@ const { productUrl } = useAppUrls()
       >
         <template v-if="products.length">
           <NuxtLinkLocale
-            v-for="product in products"
+            v-for="product in products.slice(0, MAX_PRODUCTS)"
             :key="product.id"
             :to="productUrl(product.slug)"
             :title="product.title"
@@ -85,6 +86,14 @@ const { productUrl } = useAppUrls()
             />
             <span class="search__name">{{ product.name }}</span>
           </NuxtLinkLocale>
+          <NuxtLinkLocale
+            :to="base.productos"
+            :title="locales.seeMore.title"
+            class="search__link"
+            @click="closeDropdown"
+            >{{ locales.seeMore.name }}
+            <Icon :name="ICONS.rightArrow" class="search__see-more"
+          /></NuxtLinkLocale>
         </template>
         <span v-else>{{ locales.emptySearch }}</span>
       </nav>
@@ -124,31 +133,32 @@ const { productUrl } = useAppUrls()
   }
 
   &__container {
-    @include flex(column, flex-start, flex-start, $gap: 0.1rem);
+    @include flex(column, flex-start, flex-start, $gap: 0.2rem);
     position: absolute;
     top: 2.5rem;
     width: 100%;
-    max-height: 25rem;
-    overflow-y: auto;
     padding: 1rem;
     background-color: var(--c-light-green);
     border-radius: var(--s-border-radius);
+    @include responsive(40rem) {
+      position: fixed;
+      left: 50%;
+      top: 4rem;
+      transform: translateX(-50%);
+      width: 90dvw;
+    }
     @include box-shadow($y: 3rem, $blur: 4rem, $color: #00000065);
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--c-dark-green);
-    }
-    &::-webkit-scrollbar {
-      border-radius: var(--s-border-radius);
-    }
   }
   &__card {
     @include flex($justify: flex-start, $gap: 1rem);
     width: 100%;
     padding: 0.25rem;
+    will-change: transform;
     transition: var(--t-transition);
 
     &:hover {
       background-color: #acdd8b;
+      transform: translateY(-0.0625rem);
     }
   }
   &__image {
@@ -177,6 +187,25 @@ const { productUrl } = useAppUrls()
       text-overflow: ellipsis;
       max-width: 22.5rem;
     }
+  }
+
+  &__link {
+    @include flex();
+    align-self: center;
+    margin: 0.5rem 0;
+    transition: var(--t-transition);
+    font-weight: 500;
+    &:hover {
+      transform: translateX(0.2rem);
+    }
+    &:hover .search__see-more {
+      transform: translateX(0.25rem);
+    }
+  }
+  &__see-more {
+    width: 1.1rem;
+    height: 1.1rem;
+    transition: var(--t-transition);
   }
 }
 </style>
