@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BreadCrumbsLocales } from '@/interfaces/breadCrumbs'
+
 defineProps<{
   color?: string
   positionAbsolute?: boolean
@@ -13,8 +15,8 @@ const segments = route.path
 const getLink = (index: number) => {
   return '/' + segments.slice(0, index + 1).join('/')
 }
-const GO_TO = 'Ir a '
-const HOME = 'Inicio'
+
+const { data: breadCrumbsLocales } = await useLocales<BreadCrumbsLocales>('bread-crumbs')
 </script>
 
 <template>
@@ -27,9 +29,12 @@ const HOME = 'Inicio'
   >
     <ul class="bread-crumbs__list" :style="{ color }">
       <li class="bread-crumbs__item" :style="{ color }">
-        <NuxtLink to="/" :title="`${GO_TO}${HOME}`" class="bread-crumbs__link">{{
-          HOME
-        }}</NuxtLink>
+        <NuxtLink
+          to="/"
+          :title="`${breadCrumbsLocales.goTo} ${breadCrumbsLocales.home}`"
+          class="bread-crumbs__link"
+          >{{ breadCrumbsLocales.home }}</NuxtLink
+        >
         <span v-if="segments.length > 0" class="bread-crumbs__separator"> / </span>
       </li>
       <li
@@ -41,7 +46,7 @@ const HOME = 'Inicio'
         <template v-if="index < segments.length - 1">
           <NuxtLink
             :to="getLink(index)"
-            :title="`${GO_TO}${segment}`"
+            :title="`${breadCrumbsLocales.goTo} ${segment}`"
             class="bread-crumbs__link"
           >
             {{ segment }}

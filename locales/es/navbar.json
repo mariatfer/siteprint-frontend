@@ -17,7 +17,8 @@
     "icon": {
       "name": "search",
       "ariaLabel": "Icono de búsqueda"
-    }
+    },
+    "emptySearch": "No se han encontrado resultados para tu búsqueda."
   },
   "login": {
     "text": "Iniciar sesión",
