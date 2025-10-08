@@ -1,4 +1,5 @@
 import type { Image, Icon } from '@/interfaces/common'
+import type { Link } from '@/interfaces/footer'
 
 export interface Logo {
   link: string
@@ -15,6 +16,7 @@ export interface Search {
   ariaLabel: string
   icon: Icon
   emptySearch: string
+  seeMore: Link
 }
 
 export interface Login {
