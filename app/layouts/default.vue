@@ -1,9 +1,5 @@
 <script lang="ts" setup>
 useHead({
-  link: [
-    { rel: 'preconnect', href: 'https://www.google.com' },
-    { rel: 'preconnect', href: 'https://maps.googleapis.com' },
-  ],
   htmlAttrs: {
     lang: 'es',
   },
