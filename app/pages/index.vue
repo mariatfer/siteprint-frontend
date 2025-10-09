@@ -48,7 +48,7 @@ useSeoMeta({
     </section>
     <section class="home__store">
       <UiTheTitle>{{ homeLocales.ourStore }}</UiTheTitle>
-      <ViewsHomeTheMap />
+      <ViewsHomeTheMap :map-title="homeLocales.mapTitle" />
     </section>
   </div>
 </template>
