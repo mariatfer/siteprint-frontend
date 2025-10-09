@@ -5,6 +5,7 @@ import { ICONS } from '@/constants/icons'
 defineProps<{
   locales: Search
   products: ProductLite[]
+  search: string | null
 }>()
 
 const emit = defineEmits<{
@@ -105,12 +106,8 @@ const { productUrl, base } = useAppUrls()
 .search {
   position: relative;
   @include flex;
-  max-width: 25rem;
-  width: 65%;
-  @include responsive(40rem) {
-    max-width: 20.5rem;
-    width: 100%;
-  }
+  max-width: 24rem;
+  width: 100%;
 
   &__icon {
     position: absolute;
@@ -140,13 +137,6 @@ const { productUrl, base } = useAppUrls()
     padding: 1rem;
     background-color: var(--c-light-green);
     border-radius: var(--s-border-radius);
-    @include responsive(40rem) {
-      position: fixed;
-      left: 50%;
-      top: 4rem;
-      transform: translateX(-50%);
-      width: 90dvw;
-    }
     @include box-shadow($y: 3rem, $blur: 4rem, $color: #00000065);
   }
   &__card {

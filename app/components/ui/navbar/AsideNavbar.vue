@@ -68,7 +68,7 @@ const { productUrl } = useAppUrls()
             <li
               v-for="category in categories"
               :key="category.id"
-              class="aside-menu__category"
+              class="aside-menu__item"
             >
               <button
                 class="aside-menu__button"
@@ -95,7 +95,7 @@ const { productUrl } = useAppUrls()
               />
               {{ asideLocales.back }}
             </button>
-            <h5 class="aside-menu__subtitle">{{ selectedCategory?.name }}</h5>
+            <h5 class="aside-menu__title">{{ selectedCategory?.name }}</h5>
             <ul>
               <li
                 v-for="product in filteredProducts"
@@ -130,71 +130,58 @@ const { productUrl } = useAppUrls()
     width: 17.5rem;
     background-color: var(--c-primary);
     color: var(--c-light-graphite);
-    border-top: 0.0938rem solid var(--c-dark-blue);
-    @include box-shadow(0.375rem, 0.3125rem, 0.625rem, $color: rgba(0, 0, 0, 0.26));
+    @include box-shadow(0.375rem, 0.8rem, 0.625rem, $color: rgba(0, 0, 0, 0.26));
     overflow: hidden auto;
     &__title {
+      padding: 1rem 0;
       padding: 1rem var(--s-padding-mobile);
-      font-size: var(--s-font-h4-mobile);
+      font-size: var(--s-font-p);
+      color: var(--c-secondary);
+      font-family: var(--f-font-poppins);
       font-weight: 500;
-      color: var(--c-mid-graphite);
+      @include box-shadow(0, 1rem, 1rem, 2px, $color: rgba(0, 32, 70, 0.192));
       font-style: italic;
       user-select: none;
     }
 
-    &__category {
-      padding: 0.5rem var(--s-padding-mobile);
+    &__item {
+      padding: 0.7rem var(--s-padding-mobile);
       transition: var(--t-transition);
       &:hover {
+        color: var(--c-secondary);
         background-color: var(--c-dark-blue);
+        .aside-menu__icon {
+          transform: translateX(0.25rem);
+        }
       }
     }
 
     &__button {
       @include flex($justify: space-between, $gap: 0.5rem);
       width: 100%;
-      text-align: left;
       font-size: var(--s-font-cta);
       font-weight: 400;
       transition: var(--t-transition);
-      &:hover {
-        color: var(--c-secondary);
-      }
     }
 
     &__icon {
       width: 1.4rem;
       height: 1.4rem;
+      transition: var(--t-transition);
     }
 
     &__back {
       @include flex($justify: flex-start, $gap: 0.4rem);
       font-size: var(--s-font-small);
-      font-weight: 400;
-      padding: 1rem var(--s-padding-mobile) 0 var(--s-padding-mobile);
-      transition: var(--t-transition);
-      &:hover {
-        color: var(--c-secondary);
-      }
-    }
-
-    &__subtitle {
-      padding: 1rem var(--s-padding-mobile) 0.5rem var(--s-padding-mobile);
-      font-size: var(--s-font-p);
-      color: var(--c-mid-graphite);
-      font-family: var(--f-font-poppins);
       font-weight: 500;
-      font-style: italic;
-      user-select: none;
-    }
-
-    &__item {
-      margin: 0.3rem 0;
-      padding: 0.5rem var(--s-padding-mobile);
+      padding: 1rem var(--s-padding-mobile);
+      width: 100%;
       transition: var(--t-transition);
       &:hover {
         color: var(--c-secondary);
-        background-color: var(--c-dark-blue);
+        .aside-menu__icon {
+          transform: translateX(-0.25rem);
+        }
       }
     }
 

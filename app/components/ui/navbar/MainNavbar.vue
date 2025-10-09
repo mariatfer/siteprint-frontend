@@ -32,7 +32,6 @@ const showMenu = ref(false)
 function toggleMenu() {
   showMenu.value = !showMenu.value
 }
-
 const search = ref('')
 const { searchedProducts } = useSearchedProducts(search, categories)
 </script>
@@ -79,7 +78,6 @@ const { searchedProducts } = useSearchedProducts(search, categories)
       :selected-category="selectedCategory"
       @update:selected-category="selectedCategory = $event"
     />
-
     <Transition name="fade">
       <UiNavbarProductsNavbar
         v-if="selectedCategory && filteredProducts.length"
@@ -111,34 +109,41 @@ const { searchedProducts } = useSearchedProducts(search, categories)
 
   &__principal {
     background-color: var(--c-primary);
-    height: 4rem;
+    height: max-content;
     max-height: 4rem;
     padding: 0.5625rem var(--s-padding);
     position: relative;
     @include flex($justify: flex-start, $gap: 1rem);
 
     @include responsive() {
+      @include flex(column, flex-start, flex-start, $gap: 0.3rem);
+      max-height: 6.4375rem;
       padding: 0.75rem var(--s-padding-mobile);
     }
   }
 
   &__center {
+    position: fixed;
+    width: 24rem;
+    left: 50%;
+    transform: translateX(-50%);
     @include flex($justify: center);
-    flex-grow: 1;
-    @include responsive(40rem) {
-      @include flex($justify: flex-end);
+
+    @include responsive() {
+      position: initial;
+      left: unset;
+      transform: unset;
+      width: 100%;
+      height: 100%;
     }
   }
 
   &__left-side {
-    @include flex($justify: space-between, $gap: 2rem);
-    @include responsive(40rem) {
-      @include flex($justify: space-between, $gap: 1em);
-    }
+    @include flex($justify: space-between, $gap: 1rem);
   }
 
   &__logo {
-    @include flex($justify: space-between, $gap: 1rem);
+    @include flex($justify: space-between, $gap: 0.8rem);
   }
   &__title {
     @include flex(column, flex-start);
