@@ -4,75 +4,62 @@ const emit = defineEmits(['toggle'])
 </script>
 
 <template>
-  <div class="background">
-    <div
-      class="button-mobile"
-      :class="{ 'button-toggle--active': active }"
-      @click="emit('toggle')"
-    >
-      <div class="button-mobile--line" />
-      <div class="button-mobile--line" />
-      <div class="button-mobile--line" />
-    </div>
+  <div class="hamburger" :class="{ 'is-active': active }" @click="emit('toggle')">
+    <svg viewBox="0 0 32 32" class="hamburger__icon">
+      <path
+        class="hamburger__line hamburger__line--top-bottom"
+        d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+      />
+      <path class="hamburger__line" d="M7 16 27 16" />
+    </svg>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.button-mobile {
-  background: none;
-  border: none;
-  cursor: pointer;
-  @include flex(column);
-  height: 1.5rem;
-  width: 1.5rem;
-  position: relative;
-  margin: 0 0 0.3rem 0;
-  transition: var(--t-transition);
-  flex-shrink: 0;
-
-  &--line {
-    height: 1rem;
-    width: 1.5rem;
-    margin: 0.35rem 0 0 0;
-    background-color: var(--c-white);
-    border-radius: 0.125rem;
-    transform-origin: center;
-    transition: all 0.4s ease;
-  }
-}
-.background {
+.hamburger {
   display: none;
   @include responsive() {
-    display: block;
-    padding: 0.3rem 0.5rem;
+    padding: 0.2rem;
     border-radius: 50%;
-    transition: var(--t-transition);
+    cursor: pointer;
+    display: inline-block;
     &:hover {
       background-color: var(--c-dark-blue);
-      .button-mobile--line {
-        background-color: var(--c-secondary);
-      }
     }
   }
-}
 
-.button-toggle--active {
-  top: 0.1875rem;
-  left: 0.375rem;
-  .button-mobile--line:nth-child(1) {
-    transform: rotate(45deg) translate(0, 0.93rem);
-    margin: 0 0 0 0.6rem;
-    height: 0.2rem;
+  &__icon {
+    height: 2.3em;
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .button-mobile--line:nth-child(2) {
-    opacity: 0;
+  &__line {
+    fill: none;
+    stroke: var(--c-white);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    transition:
+      stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &--top-bottom {
+      stroke-dasharray: 12 63;
+    }
   }
 
-  .button-mobile--line:nth-child(3) {
-    transform: rotate(-45deg) translate(0, -0.93rem);
-    margin: 0 0 0 0.6rem;
-    height: 0.2rem;
+  &.is-active {
+    .hamburger__icon {
+      transform: rotate(-45deg);
+    }
+    .hamburger__line {
+      stroke: var(--c-secondary);
+    }
+
+    .hamburger__line--top-bottom {
+      stroke-dasharray: 20 300;
+      stroke-dashoffset: -32.42;
+    }
   }
 }
 </style>

@@ -87,7 +87,7 @@ const { data: breadCrumbsLocales } = await useLocales<BreadCrumbsLocales>('bread
   &__separator {
     opacity: 0.8;
     font-family: var(--f-font-lato);
-    font-size: var(--s-font-small);
+    font-size: 0.75rem;
   }
   &__link {
     transition: var(--t-transition);
@@ -96,11 +96,7 @@ const { data: breadCrumbsLocales } = await useLocales<BreadCrumbsLocales>('bread
       text-decoration: underline;
     }
   }
-  &__link,
-  &__current {
-    font-style: italic;
-    opacity: 0.8;
-  }
+
   &__current {
     font-family: var(--f-font-raleway);
     font-size: var(--s-font-cta);
@@ -111,6 +107,9 @@ const { data: breadCrumbsLocales } = await useLocales<BreadCrumbsLocales>('bread
   &__current {
     font-style: italic;
     opacity: 0.8;
+    @include responsive() {
+      font-size: var(--s-font-small);
+    }
   }
 }
 </style>

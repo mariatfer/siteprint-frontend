@@ -101,10 +101,18 @@
   &:deep(h2) {
     margin: 2.5rem 0 1rem 0;
     font-weight: 600;
+    font-size: var(--s-font-h3);
+    @include responsive() {
+      font-size: var(--s-font-h3-mobile);
+    }
   }
 
   &:deep(h3) {
     margin: 1.5rem 0;
+    font-size: var(--s-font-h4);
+    @include responsive() {
+      font-size: var(--s-font-h4-mobile);
+    }
   }
 
   &:deep(p) {
@@ -120,7 +128,10 @@
   }
 
   &:deep(a) {
-    color: var(--c-primary);
-    font-weight: 600;
+    color: var(--c-dark-blue);
+    font-weight: 500;
+    will-change: transform;
+    transition: var(--t-transition);
+    @include underline(var(--c-dark-brown));
   }
 }
