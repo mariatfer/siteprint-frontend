@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { Carousel, Media } from '@/interfaces/common'
+import type { CarouselLocales } from '@/interfaces/carousel'
 
 const props = defineProps<{
   carousel: Carousel[]
   borderRadius?: boolean
   height?: string
 }>()
+
+const { data: carouselLocales } = await useLocales<CarouselLocales>('carousel')
 
 const { Swiper, SwiperSlide, modules } = useSwiper()
 
@@ -68,8 +71,8 @@ const carouselData = props.carousel?.map((item) =>
           controlsList="nodownload"
         ></video>
       </SwiperSlide>
-      <div class="swiper-button-next" aria-label="Siguiente diapositiva"></div>
-      <div class="swiper-button-prev" aria-label="Diapositiva anterior"></div>
+      <button class="swiper-button-next" :aria-label="carouselLocales.nextSlide"></button>
+      <button class="swiper-button-prev" :aria-label="carouselLocales.prevSlide"></button>
     </Swiper>
   </div>
 </template>

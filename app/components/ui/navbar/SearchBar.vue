@@ -49,8 +49,6 @@ const { productUrl, base } = useAppUrls()
       class="search__input"
       :placeholder="locales.placeholder"
       :aria-label="locales.ariaLabel"
-      :aria-expanded="shouldShowDropdown"
-      aria-controls="search-results"
       @input="handleInput"
     />
     <Icon

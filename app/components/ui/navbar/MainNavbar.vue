@@ -53,12 +53,12 @@ const { searchedProducts } = useSearchedProducts(search, categories)
             class="navbar__image"
             placeholder
           />
-          <div class="navbar__title" role="heading">
+          <h2 class="navbar__title">
             {{ navbarLocales.logo.enterpriseTitle.text }}
             <span class="navbar__span">
               {{ navbarLocales.logo.enterpriseTitle.span }}</span
             >
-          </div>
+          </h2>
         </NuxtLinkLocale>
       </div>
 
