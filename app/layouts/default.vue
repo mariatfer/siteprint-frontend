@@ -23,10 +23,10 @@ useHead({
 <style lang="scss" scoped>
 .layout {
   height: calc(100dvh - 5.9063rem);
-  margin: 5.9063rem 0 0 0;
+  margin: 5.7813rem 0 0 0;
   @include flex(column, flex-start, flex-start);
   @include responsive() {
-    margin: 4rem 0 0;
+    margin: 6.4375rem 0 0;
   }
 }
 
