@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps<{
+  mapTitle: string
+}>()
+</script>
 
 <template>
   <iframe
@@ -7,6 +11,7 @@
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
     class="map"
+    :title="mapTitle"
   ></iframe>
 </template>
 <style scoped lang="scss">

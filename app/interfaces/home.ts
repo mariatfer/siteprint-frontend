@@ -10,6 +10,7 @@ export interface HomeLocales {
   keyAdvantages: KeyAdvantages
   productButton: string
   ourStore: string
+  mapTitle: string
 }
 export interface Home {
   homeCarousel: Carousel[]

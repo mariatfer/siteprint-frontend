@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Product } from '@/interfaces/products'
+import type { CarouselLocales } from '@/interfaces/carousel'
 
 defineProps<{
   products: Product[]
 }>()
+
+const { data: carouselLocales } = await useLocales<CarouselLocales>('carousel')
 
 const { productUrl } = useAppUrls()
 
@@ -69,8 +72,8 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
         <h3 class="carousel__product">{{ product.name }}</h3>
       </NuxtLinkLocale>
     </SwiperSlide>
-    <div class="swiper-button-next" aria-label="Next slide"></div>
-    <div class="swiper-button-prev" aria-label="Previous slide"></div>
+    <button class="swiper-button-next" :aria-label="carouselLocales.nextSlide"></button>
+    <button class="swiper-button-prev" :aria-label="carouselLocales.prevSlide"></button>
   </Swiper>
 </template>
 
