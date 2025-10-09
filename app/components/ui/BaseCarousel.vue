@@ -88,7 +88,7 @@ const carouselData = props.carousel?.map((item) =>
   height: 100%;
   @include responsive() {
     aspect-ratio: 4 / 5;
-    max-height: 25rem;
+    max-height: 20rem;
   }
 
   &__article {
