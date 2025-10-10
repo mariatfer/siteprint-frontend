@@ -10,8 +10,6 @@ export type BooleanValidationRule = (
   messages: ValidationErrors,
 ) => string | undefined
 
-export type BooleanFieldNames = 'privacyPolicy' | 'newsletter'
-
 export type FormValues = FormData & { files: File[] }
 
 export type FormType = 'contact' | 'quote'
