@@ -28,7 +28,7 @@ const carouselData = props.carousel?.map((item) =>
 </script>
 
 <template>
-  <div class="carousel-wrapper">
+  <div v-if="carousel.length" class="carousel-wrapper">
     <Swiper
       :modules="modules"
       :loop="carousel.length > 1 ? true : false"

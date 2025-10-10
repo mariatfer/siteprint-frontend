@@ -125,6 +125,7 @@ const { productUrl } = useAppUrls()
     display: block;
     position: fixed;
     left: 0;
+    z-index: 1000;
     height: 100vh;
     max-width: 17.5rem;
     width: 17.5rem;

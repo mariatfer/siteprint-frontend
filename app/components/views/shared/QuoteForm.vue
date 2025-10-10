@@ -99,7 +99,7 @@ function handleBlur(field: keyof FormValues) {
     novalidate
     @submit.prevent="onSubmit"
   >
-    <UiTheTitle v-if="locales.title">{{ locales.title }}</UiTheTitle>
+    <UiTheTitle v-if="locales.title" :min-margin="true">{{ locales.title }}</UiTheTitle>
     <div class="line"></div>
     <template v-if="formLocales.inputFields">
       <UiFormInputField

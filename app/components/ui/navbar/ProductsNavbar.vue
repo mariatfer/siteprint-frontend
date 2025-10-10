@@ -31,7 +31,7 @@ const { productUrl } = useAppUrls()
       <ul v-if="products" class="products__list">
         <li v-for="product in products" :key="product.id" class="products__item">
           <NuxtLinkLocale
-            :href="productUrl(product.slug)"
+            :to="productUrl(product.slug)"
             :title="product.title"
             class="products__link"
             @click="closeDropdown"

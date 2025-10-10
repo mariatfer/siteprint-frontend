@@ -45,7 +45,7 @@ const handleKeydown = (event: KeyboardEvent) => {
             aria-hidden="true"
           />
         </div>
-        <UiTheTitle :font-size="true">{{ card.name }}</UiTheTitle>
+        <UiTheTitle :font-size="true" :min-margin="true">{{ card.name }}</UiTheTitle>
         <span class="flip-card__hint" aria-hidden="true">
           <Icon :name="ICONS.rotate" class="flip-card__hint-icon" />
           <span class="flip-card__hint-text">{{ card.hintText }}</span>

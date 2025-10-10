@@ -42,7 +42,7 @@ const { searchedProducts } = useSearchedProducts(search, categories)
       <div class="navbar__left-side">
         <UiNavbarHamburgerToggle :active="showMenu" @toggle="toggleMenu" />
         <NuxtLinkLocale
-          :href="navbarLocales.logo.link"
+          :to="navbarLocales.logo.link"
           :title="navbarLocales.logo.title"
           class="navbar__logo"
         >
@@ -53,12 +53,12 @@ const { searchedProducts } = useSearchedProducts(search, categories)
             class="navbar__image"
             placeholder
           />
-          <h2 class="navbar__title">
+          <div role="heading" aria-level="1" class="navbar__title">
             {{ navbarLocales.logo.enterpriseTitle.text }}
             <span class="navbar__span">
               {{ navbarLocales.logo.enterpriseTitle.span }}</span
             >
-          </h2>
+          </div>
         </NuxtLinkLocale>
       </div>
 

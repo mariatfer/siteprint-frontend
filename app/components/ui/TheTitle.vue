@@ -1,11 +1,12 @@
 <script setup lang="ts">
 defineProps<{
   fontSize?: boolean
+  minMargin?: boolean
 }>()
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :class="{ 'header--min-margin': minMargin }">
     <h2 class="header__title" :class="{ 'header__title--font-size': fontSize }">
       <slot></slot>
     </h2>
@@ -15,8 +16,11 @@ defineProps<{
 <style lang="scss" scoped>
 .header {
   text-align: center;
-  margin: 1.5rem 0 2rem 0;
+  margin: 1.5rem 0 3.5rem 0;
 
+  &--min-margin {
+    margin: 1.5rem 0;
+  }
   &__title {
     font-size: var(--s-font-h3);
     font-weight: 600;
