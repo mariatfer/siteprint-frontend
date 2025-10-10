@@ -14,14 +14,14 @@ export class Validator {
   private validationRules: ValidationRules = {
     name: [
       (value: string, messages): string | undefined => {
-        if (!value || value.trim().length < 2) {
-          return messages.name.minLength
+        if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(value.trim())) {
+          return messages.name.onlyLetters
         }
         return undefined
       },
       (value: string, messages): string | undefined => {
-        if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/.test(value.trim())) {
-          return messages.name.onlyLetters
+        if (!value || value.trim().length < 2) {
+          return messages.name.minLength
         }
         return undefined
       },
