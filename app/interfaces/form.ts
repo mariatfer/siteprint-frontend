@@ -1,5 +1,5 @@
 import type { TextVariant } from '@/interfaces/common'
-import type { BooleanFieldNames, FormType, ToastMessages } from '@/types/form'
+import type { FormType, ToastMessages } from '@/types/form'
 
 export interface FormData {
   name: string
@@ -10,8 +10,8 @@ export interface FormData {
   newsletter?: boolean
 }
 
-export interface FormField {
-  id: string
+export interface BaseField {
+  id: number | string
   name: keyof FormData
   label: string
   ariaLabel: string
@@ -21,13 +21,13 @@ export interface FormField {
   disabled?: boolean
   required?: boolean
 }
-export interface FormCheckbox {
-  id: number
-  name: BooleanFieldNames
-  label: string
-  ariaLabel: string
-  disabled?: boolean
-  required?: boolean
+interface TextField extends BaseField {
+  type: 'text' | 'email' | 'textarea'
+}
+
+interface CheckboxField extends BaseField {
+  type: 'checkbox'
+  name: 'privacyPolicy' | 'newsletter'
   showIn?: FormType[]
 }
 
@@ -73,9 +73,9 @@ export interface ValidationErrors {
 
 export interface FormLocales {
   toastMessages: ToastMessages
-  inputFields: FormField[]
-  textArea: FormField
+  inputFields: TextField[]
+  textArea: TextField
   fileUpload: FileUpload
-  checkBox: FormCheckbox[]
+  checkBox: CheckboxField[]
   validationErrors: ValidationErrors
 }
