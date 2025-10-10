@@ -86,7 +86,7 @@ const { productUrl, base } = useAppUrls()
             <span class="search__name">{{ product.name }}</span>
           </NuxtLinkLocale>
           <NuxtLinkLocale
-            :to="base.productos"
+            :to="base.products"
             :title="locales.seeMore.title"
             class="search__link"
             @click="closeDropdown"

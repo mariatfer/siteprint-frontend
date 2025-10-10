@@ -65,6 +65,7 @@ function handleClick(event: Event) {
   color: #090909;
   padding: 0.7em 1.7em;
   font-size: var(--s-font-p);
+  font-weight: 500;
   border-radius: 0.5em;
   background: #e8e8e8;
   border: 0.0625rem solid #e8e8e8;

@@ -15,6 +15,7 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
 
 <template>
   <Swiper
+    v-if="products.length"
     :modules="modules"
     :loop="true"
     :keyboard="true"
@@ -24,23 +25,22 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
       prevEl: '.swiper-button-prev',
     }"
     :slides-per-view="1"
-    :space-between="10"
     :breakpoints="{
-      '640': {
+      '1024': {
         slidesPerView: 2,
         spaceBetween: 0,
       },
-      '980': {
+      '1260': {
         slidesPerView: 3,
-        spaceBetween: 90,
+        spaceBetween: 0,
       },
       '1440': {
         slidesPerView: 4,
-        spaceBetween: 40,
+        spaceBetween: 10,
       },
       '1600': {
         slidesPerView: 5,
-        spaceBetween: 70,
+        spaceBetween: 10,
       },
     }"
     class="carousel"
@@ -51,7 +51,7 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
       class="carousel__article"
     >
       <NuxtLinkLocale
-        :href="productUrl(product.slug)"
+        :to="productUrl(product.slug)"
         :title="product.title"
         class="carousel__link"
       >
@@ -82,11 +82,21 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
   &__article {
     width: 100%;
     height: 100%;
+    padding: 1rem 0;
     @include flex($align: stretch);
   }
 
   &__link {
     border-radius: 50%;
+    transition: var(--t-transition);
+    will-change: transform;
+    &:hover {
+      transform: translateY(-0.125rem);
+      .carousel__image {
+        border-color: var(--c-secondary);
+        @include box-shadow($blur: 0.5rem, $color: #0000001e);
+      }
+    }
   }
 
   &__image {
@@ -95,9 +105,6 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
     height: 12rem;
     border: 0.125rem solid var(--c-light-graphite);
     transition: var(--t-transition);
-    &:hover {
-      border-color: var(--c-secondary);
-    }
   }
 
   &__product {

@@ -60,6 +60,8 @@ const modelValue = defineModel<boolean>()
     user-select: none;
     cursor: pointer;
     @include flex($gap: 1rem);
+    color: var(--c-graphite);
+    font-weight: 500;
 
     &:hover &__span:first-child {
       border-color: var(--c-dark);

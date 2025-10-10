@@ -22,6 +22,7 @@ const emit = defineEmits(['toggle'])
     padding: 0.2rem;
     border-radius: 50%;
     cursor: pointer;
+    transition: var(--t-transition);
     display: inline-block;
     &:hover {
       background-color: var(--c-dark-blue);

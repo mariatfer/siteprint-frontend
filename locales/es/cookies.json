@@ -1,0 +1,50 @@
+{
+  "banner": {
+    "description": "Usamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico.",
+    "cookiesLink": {
+      "id": 1,
+      "name": "Más información",
+      "title": "Ver política de cookies",
+      "slug": "/politica-de-cookies"
+    },
+    "actions": {
+      "acceptAll": "Aceptar todas",
+      "rejectAll": "Rechazar",
+      "configure": "Configurar"
+    }
+  },
+  "modal": {
+    "title": "Configuración de cookies",
+    "description": "Selecciona qué tipos de cookies quieres permitir. Puedes cambiar tus preferencias en cualquier momento.",
+    "form": [
+      {
+        "id": 1,
+        "name": "technical",
+        "label": "Cookies técnicas (obligatorias)",
+        "ariaLabel": "Cookies técnicas",
+        "disabled": true
+      },
+      {
+        "id": 2,
+        "name": "analytics",
+        "label": "Cookies analíticas (Google Analytics)",
+        "ariaLabel": "Activar cookies analíticas",
+        "disabled": false
+      },
+      {
+        "id": 2,
+        "name": "marketing",
+        "label": "Cookies de marketing (Google Maps, reCAPTCHA)",
+        "ariaLabel": "Activar cookies de marketing",
+        "disabled": false
+      }
+    ],
+    "actions": {
+      "savePreferences": "Guardar preferencias",
+      "closeModal": "Cancelar"
+    }
+  },
+  "button": {
+    "ariaLabel": "Configurar preferencias de cookies"
+  }
+}
