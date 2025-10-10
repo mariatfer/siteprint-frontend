@@ -11,6 +11,11 @@ const policySlug: Slug = { slug: policy as string }
 const policyData = ref<Policy>()
 policyData.value = await getPolicyBySlug(policySlug)
 
+const showCookiesButton = computed(() => {
+  const slug = (route.params.policy as string)?.toLowerCase() || ''
+  return slug.includes('cookie')
+})
+
 const { contrastColor, analyzeImageColor } = useImageColor()
 
 const { parseMarkdown } = useSanitizedMarkdown()
@@ -44,6 +49,7 @@ if (policyData.value) {
     <UiBreadCrumbs :color="contrastColor" :position-absolute="true" :no-padding="true" />
     <UiTheHero v-if="policyData?.hero" :hero="policyData.hero" />
     <section v-if="policyData?.content" class="policy__content" v-html="htmlContent" />
+    <UiCookiesButton v-if="showCookiesButton" />
   </div>
 </template>
 
@@ -58,6 +64,10 @@ if (policyData.value) {
     }
 
     @include markdown();
+    &:deep(table) {
+      display: block;
+      width: 100%;
+    }
   }
 }
 </style>

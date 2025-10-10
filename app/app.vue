@@ -19,4 +19,5 @@ const closeButton = ref(true)
     />
     <NuxtPage />
   </NuxtLayout>
+  <UiCookiesBanner />
 </template>
