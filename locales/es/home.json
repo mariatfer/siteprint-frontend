@@ -5,5 +5,9 @@
   },
   "productButton": "Ver listado de productos",
   "ourStore": "Nuestra tienda",
-  "mapTitle": "Mapa con la dirección de nuestra tienda"
+  "map": {
+    "title": "Mapa con la dirección de nuestra tienda",
+    "acceptCookies": "Para ver el mapa, acepta las cookies de marketing.",
+    "buttonLabel": "Configurar cookies"
+  }
 }
