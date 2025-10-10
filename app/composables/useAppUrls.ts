@@ -1,10 +1,10 @@
-type UrlBase = 'productos' | 'ayudas' | 'politicas'
+type UrlBase = 'products' | 'helps' | 'policys'
 
 export const useAppUrls = () => {
   const baseUrls: Record<UrlBase, string> = {
-    productos: '/productos',
-    ayudas: '/ayudas',
-    politicas: '/politicas',
+    products: '/productos',
+    helps: '/ayudas',
+    policys: '/politicas',
   }
 
   const buildUrl = (base: UrlBase, slug?: string): string => {
@@ -13,9 +13,9 @@ export const useAppUrls = () => {
   }
 
   return {
-    productUrl: (slug?: string) => buildUrl('productos', slug),
-    helpUrl: (slug?: string) => buildUrl('ayudas', slug),
-    policyUrl: (slug?: string) => buildUrl('politicas', slug),
+    productUrl: (slug?: string) => buildUrl('products', slug),
+    helpUrl: (slug?: string) => buildUrl('helps', slug),
+    policyUrl: (slug?: string) => buildUrl('policys', slug),
     buildUrl,
     base: baseUrls,
   }
