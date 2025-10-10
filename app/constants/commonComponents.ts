@@ -4,4 +4,5 @@ export const COMMON_COMPONENTS = [
   'form',
   'bread-crumbs',
   'carousel',
+  'cookies',
 ] as const
