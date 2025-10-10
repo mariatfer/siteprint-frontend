@@ -108,8 +108,9 @@
   }
 
   &:deep(h3) {
-    margin: 1.5rem 0;
+    margin: 2rem 0 1rem 0;
     font-size: var(--s-font-h4);
+    font-weight: 600;
     @include responsive() {
       font-size: var(--s-font-h4-mobile);
     }
@@ -133,5 +134,38 @@
     will-change: transform;
     transition: var(--t-transition);
     @include underline(var(--c-dark-brown));
+  }
+
+  &:deep(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &:deep(th) {
+    background-color: var(--c-light-green);
+    color: var(--c-black);
+    vertical-align: middle;
+    border: 0.0625rem solid var(--c-dark-green);
+    padding: 1em;
+    @include responsive() {
+      padding: 0.5em;
+    }
+  }
+
+  &:deep(td) {
+    border: 0.0625rem solid var(--c-dark-green);
+    padding: 1em;
+    @include responsive() {
+      padding: 0.5em;
+    }
+  }
+
+  &:deep(code) {
+    background-color: var(--c-light-graphite);
+    padding: 0.2rem;
+    border-radius: 0.25rem;
   }
 }
