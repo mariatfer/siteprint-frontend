@@ -24,6 +24,9 @@ const { productUrl } = useAppUrls()
         placeholder="/original-logo.svg"
         class="product-card__image"
         placeholder-class="product-card__placeholder"
+        sizes="100vw"
+        width="196"
+        height="158"
       />
       <h2 class="product-card__title">{{ product.name }}</h2>
     </section>

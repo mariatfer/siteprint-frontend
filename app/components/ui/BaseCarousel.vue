@@ -55,9 +55,9 @@ const carouselData = props.carousel?.map((item) =>
           :placeholder="carouselItem.placeholder"
           fetchpriority="high"
           preload
-          :sizes="'100vw'"
-          :width="1200"
-          :height="800"
+          sizes="100vw"
+          width="1200"
+          height="800"
           quality="85"
         />
         <video

@@ -19,6 +19,7 @@ defineProps<{
       placeholder-class="contact-hero__placeholder"
       fetchpriority="high"
       preload
+      sizes="(min-width: 1024px) 50vw, 100vw"
       width="400"
       height="400"
       quality="85"
