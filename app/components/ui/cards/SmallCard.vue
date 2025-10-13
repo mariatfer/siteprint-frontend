@@ -2,10 +2,16 @@
 import type { SmallCard } from '@/interfaces/common'
 
 defineProps<SmallCard>()
+
+const { elementRef, isVisible } = useScrollAnimation({
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px',
+  once: true,
+})
 </script>
 
 <template>
-  <article class="card">
+  <article ref="elementRef" class="card" :class="{ 'card--visible': isVisible }">
     <NuxtImg
       v-if="cardImage"
       :src="cardImage.url"
@@ -13,6 +19,9 @@ defineProps<SmallCard>()
       :title="cardImage.alternativeText"
       placeholder="/original-logo.svg"
       class="card__image"
+      sizes="100vw"
+      width="160"
+      height="136"
     />
     <h3 class="card__title">{{ title }}</h3>
   </article>
@@ -23,6 +32,7 @@ defineProps<SmallCard>()
   @include flex(column, $gap: 1rem);
   width: 10rem;
   height: auto;
+  @include scrollAnimation();
   @include responsive() {
     width: 15rem;
   }
