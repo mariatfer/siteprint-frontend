@@ -19,9 +19,10 @@ defineProps<{
       :title="hero.heroImage.alternativeText"
       fetchpriority="high"
       preload
-      :sizes="'100vw'"
-      :width="1200"
-      :height="800"
+      sizes="100vw"
+      width="1696"
+      height="562"
+      placeholder
       quality="85"
       class="hero__image"
       :class="{ 'hero__image--border': padding }"

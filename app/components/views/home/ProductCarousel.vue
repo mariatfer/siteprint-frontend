@@ -63,9 +63,9 @@ const { Swiper, SwiperSlide, modules } = useSwiper()
           :placeholder="product.productImage.placeholder"
           fetchpriority="high"
           preload
-          :sizes="'100vw'"
-          :width="1200"
-          :height="800"
+          sizes="192px"
+          width="192"
+          height="192"
           quality="85"
           class="carousel__image"
         />

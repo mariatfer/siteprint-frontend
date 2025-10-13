@@ -19,6 +19,7 @@ const emit = defineEmits(['toggle'])
 .hamburger {
   display: none;
   @include responsive() {
+    max-height: 2.6875rem;
     padding: 0.2rem;
     border-radius: 50%;
     cursor: pointer;

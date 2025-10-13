@@ -46,12 +46,14 @@ const { searchedProducts } = useSearchedProducts(search, categories)
           :title="navbarLocales.logo.title"
           class="navbar__logo"
         >
-          <NuxtImg
+          <img
             :src="navbarLocales.logo.image.url"
             :title="navbarLocales.logo.image.alternativeText"
             :alt="navbarLocales.logo.image.alternativeText"
             class="navbar__image"
-            placeholder
+            sizes="(min-width: 1024px) 50px, 37px"
+            width="50"
+            height="48"
           />
           <div role="heading" aria-level="1" class="navbar__title">
             {{ navbarLocales.logo.enterpriseTitle.text }}
@@ -116,8 +118,8 @@ const { searchedProducts } = useSearchedProducts(search, categories)
     @include flex($justify: flex-start, $gap: 1rem);
 
     @include responsive() {
-      @include flex(column, flex-start, flex-start, $gap: 0.3rem);
-      max-height: 6.4375rem;
+      @include flex(column, flex-start, flex-start, $gap: 0.75rem);
+      max-height: 6.9375rem;
       padding: 0.75rem var(--s-padding-mobile);
     }
   }
@@ -170,12 +172,12 @@ const { searchedProducts } = useSearchedProducts(search, categories)
   }
 
   &__image {
-    width: 3.1082rem;
+    width: auto;
     height: 3rem;
     order: 0;
     @include responsive() {
-      width: auto;
-      height: 2rem;
+      height: 2.2rem;
+      max-height: 2.6875rem;
     }
   }
 }

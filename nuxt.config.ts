@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import i18nConfig from './config/i18n'
+const STRAPI_URL = process.env.NUXT_STRAPI_URL || 'http://localhost:1337'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -20,10 +21,15 @@ export default defineNuxtConfig({
     resendApiKey: process.env.RESEND_API_KEY,
 
     public: {
-      strapiUrl: process.env.NUXT_STRAPI_URL || 'http://localhost:1337',
+      strapiUrl: STRAPI_URL,
     },
   },
-  ssr: false,
+  ssr: true,
+  nitro: {
+    prerender: {
+      routes: ['/'],
+    },
+  },
   css: [
     '@/assets/fonts.css',
     '@/assets/variables.css',
@@ -48,8 +54,13 @@ export default defineNuxtConfig({
       fallbackLocale: 'es',
     },
   },
+  image: {
+    provider: 'ipx',
+    domains: [STRAPI_URL.replace(/^https?:\/\//, '')],
+    format: ['webp', 'avif', 'png', 'svg', 'jpeg', 'jpg'],
+  },
   strapi: {
-    url: process.env.NUXT_STRAPI_URL || 'http://localhost:1337',
+    url: STRAPI_URL,
     prefix: '/api',
     version: 'v5',
     cookie: {},

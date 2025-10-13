@@ -8,7 +8,6 @@ defineProps<{
 }>()
 
 const isFlipped = ref(false)
-const cardRef = ref<HTMLElement>()
 
 const handleInteraction = () => {
   if (window.matchMedia('(hover: none)').matches) {
@@ -26,7 +25,6 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 <template>
   <article
-    ref="cardRef"
     class="flip-card"
     :class="{ 'is-flipped': isFlipped }"
     tabindex="0"

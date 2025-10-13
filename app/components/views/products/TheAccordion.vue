@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { AccordionItem } from '@/interfaces/products'
+import type { AccordionItem } from '@/interfaces/common'
 import { ICONS } from '@/constants/icons'
 
 defineProps<AccordionItem>()
@@ -41,10 +41,16 @@ watch(isOpen, async () => {
     { once: true },
   )
 })
+
+const { elementRef, isVisible } = useScrollAnimation({
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px',
+  once: true,
+})
 </script>
 
 <template>
-  <div class="accordion">
+  <div ref="elementRef" class="accordion" :class="{ 'accordion--visible': isVisible }">
     <button class="accordion__button" :aria-expanded="isOpen" @click="toggleAccordion">
       {{ label }}
       <Icon :name="isOpen ? ICONS.topArrow : ICONS.bottomArrow" aria-hidden="true" />
@@ -65,7 +71,7 @@ watch(isOpen, async () => {
   overflow: hidden;
   margin-bottom: 1rem;
   @include box-shadow(0, 0.125rem, 0.375rem, $color: rgba(0, 0, 0, 0.05));
-
+  @include scrollAnimation();
   &__button {
     @include flex($justify: space-between);
     width: 100%;

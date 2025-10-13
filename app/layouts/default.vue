@@ -22,7 +22,7 @@ useHead({
   margin: 5.7813rem 0 0 0;
   @include flex(column, flex-start, flex-start);
   @include responsive() {
-    margin: 6.4375rem 0 0;
+    margin: 6.9375rem 0 0;
   }
 }
 

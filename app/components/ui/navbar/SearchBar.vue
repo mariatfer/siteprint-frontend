@@ -49,6 +49,7 @@ const { productUrl, base } = useAppUrls()
       class="search__input"
       :placeholder="locales.placeholder"
       :aria-label="locales.ariaLabel"
+      autocomplete="off"
       @input="handleInput"
     />
     <Icon
@@ -82,6 +83,9 @@ const { productUrl, base } = useAppUrls()
               placeholder="/original-logo.svg"
               class="search__image"
               placeholder-class="search__placeholder"
+              sizes="48px"
+              width="48px"
+              height="48px"
             />
             <span class="search__name">{{ product.name }}</span>
           </NuxtLinkLocale>
