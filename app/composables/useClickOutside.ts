@@ -13,7 +13,9 @@ export function useClickOutside(
   let listener: ((e: MouseEvent) => void) | null = null
   let isFirstRun = true
 
-  function setupListener() {
+  const setupListener = () => {
+    if (!import.meta.client) return
+
     if (listener) {
       document.removeEventListener('click', listener)
       listener = null
@@ -40,16 +42,26 @@ export function useClickOutside(
     isFirstRun = false
   }
 
-  function cleanupListener() {
+  const cleanupListener = () => {
+    if (!import.meta.client) return
     if (listener) {
       document.removeEventListener('click', listener)
       listener = null
     }
   }
 
+  onMounted(() => {
+    if (!activateOnEnable) setupListener()
+  })
+
+  onBeforeUnmount(() => {
+    cleanupListener()
+  })
+
   watch(
     isEnabled,
     (newValue, oldValue) => {
+      if (!import.meta.client) return
       if (newValue) {
         if (!activateOnEnable || oldValue === false) {
           setupListener()
@@ -61,26 +73,10 @@ export function useClickOutside(
     { immediate: !activateOnEnable },
   )
 
-  onMounted(() => {
-    if (!activateOnEnable) {
-      setupListener()
-    }
-  })
-
-  onBeforeUnmount(() => {
-    cleanupListener()
-  })
-
   return {
-    enable: () => {
-      isEnabled.value = true
-    },
-    disable: () => {
-      isEnabled.value = false
-    },
-    toggle: () => {
-      isEnabled.value = !isEnabled.value
-    },
+    enable: () => (isEnabled.value = true),
+    disable: () => (isEnabled.value = false),
+    toggle: () => (isEnabled.value = !isEnabled.value),
     cleanup: cleanupListener,
   }
 }
