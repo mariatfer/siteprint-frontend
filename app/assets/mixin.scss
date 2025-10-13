@@ -169,3 +169,22 @@
     border-radius: 0.25rem;
   }
 }
+
+@mixin error() {
+  margin: 0.25rem 0 0 0;
+  color: var(--c-red);
+  min-height: 1.2rem;
+  height: auto;
+}
+
+@mixin scrollAnimation() {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
