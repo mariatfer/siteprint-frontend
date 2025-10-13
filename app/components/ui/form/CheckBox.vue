@@ -75,6 +75,7 @@ const modelValue = defineModel<boolean>()
 
     &:first-child {
       position: relative;
+      min-width: 1.125rem;
       width: 1.125rem;
       height: 1.125rem;
       border-radius: 0.1875rem;
@@ -128,9 +129,7 @@ const modelValue = defineModel<boolean>()
   }
 
   &__error {
-    margin-top: 0.25rem;
-    color: #cc0000;
-    height: 1.2rem;
+    @include error();
   }
 }
 

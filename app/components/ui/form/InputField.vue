@@ -131,7 +131,7 @@ function handleBlur(e: FocusEvent) {
     transition: var(--t-transition);
 
     &--error {
-      border-color: #cc0000;
+      border-color: var(--c-red);
     }
 
     &:hover {
@@ -150,9 +150,7 @@ function handleBlur(e: FocusEvent) {
   }
 
   &__error {
-    margin: 0.25rem 0 0 0;
-    color: #cc0000;
-    height: 1.1875rem;
+    @include error();
   }
   .active .field__span {
     color: var(--c-dark-blue);

@@ -123,7 +123,7 @@ function handleBlur(e: FocusEvent) {
     padding: 0.85rem 0.5rem 0.4rem 0.5rem;
 
     &--error {
-      border-color: #cc0000;
+      border-color: var(--c-red);
     }
 
     &:hover {
@@ -142,9 +142,7 @@ function handleBlur(e: FocusEvent) {
   }
 
   &__error {
-    margin: 0.25rem 0 0 0;
-    color: #cc0000;
-    height: 1.1875rem;
+    @include error();
   }
 
   .active .field__span {
